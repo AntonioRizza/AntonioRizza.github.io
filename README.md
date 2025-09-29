@@ -4,9 +4,9 @@
   <div style="flex: 1;">
     <!-- Bio goes here -->
     <h2>About Me</h2>
-    <p>Coming soon</p>
+    <p>Antonio Rizza is a Postdoctoral Researcher at Stanford University in the Space Rendezvous Laboratory working on autonomous Guidance Navigation and Control for Distributed Space Systems. He has a PhD in aerospace engineering from Politecnico di Milano where he focused on autonomous goal-oriented guidance for small bodies proximity operations and developed GNC solutions for the Milani and LUMIO CubeSats.</p>
   </div>
-  <div style="margin-left: 32px;">
+  <div style="margin-right: 32px;">
     <img src="antonio_rizza.jpg" alt="Profile Picture" width="120" height="120" />
   </div>
 </div>
