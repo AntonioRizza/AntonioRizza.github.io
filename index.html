@@ -60,7 +60,7 @@
       border-radius: 12px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.5);
     }
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       .container {
         flex-direction: column;
         align-items: center;
@@ -70,13 +70,8 @@
         margin-right: 0;
         margin-bottom: 24px;
       }
-      .navbar {
-        flex-direction: column;
-        gap: 0;
-        align-items: center;
-      }
-      .nav-link {
-        padding: 12px 0 6px 0;
+      .container > div:last-child {
+        margin-left: 0;
       }
     }
     .tab-content { display: none; }
