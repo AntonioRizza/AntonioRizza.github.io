@@ -90,6 +90,23 @@
       if(tab === 'research') bg = 'background-research.jpg';
       if(tab === 'missions') bg = 'background-missions.jpg';
       document.body.style.backgroundImage = `url('${bg}')`;
+      // Scroll-driven video for Missions tab
+      if(tab === 'missions') setupScrollVideo();
+    }
+    function setupScrollVideo() {
+      const video = document.getElementById('missionsVideo');
+      if (!video) return;
+      video.addEventListener('loadedmetadata', function() {
+        window.addEventListener('scroll', function scrollHandler() {
+          const missionsTab = document.getElementById('missions');
+          const rect = missionsTab.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          if (rect.top < windowHeight && rect.bottom > 0) {
+            const progress = Math.min(Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0), 1);
+            video.currentTime = progress * video.duration;
+          }
+        }, { passive: true });
+      }, { once: true });
     }
     window.onload = function() {
       showTab('about');
@@ -127,7 +144,10 @@
   <div class="container tab-content" id="missions">
     <div class="bio">
       <h2>Missions</h2>
-      <p>Coming soon...</p>
+      <div style="position:relative; width:100%; max-width:600px; margin:auto;">
+        <video id="missionsVideo" src="missions-video.mp4" preload="auto" muted style="width:100%; display:block;"></video>
+      </div>
+      <p>Scroll down to scrub through the video.</p>
     </div>
   </div>
 </body>
