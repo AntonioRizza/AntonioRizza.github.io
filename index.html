@@ -88,14 +88,16 @@
       let bg = 'background-about.jpg';
       if(tab === 'Publications') bg = 'background-publications.jpg';
       if(tab === 'research') bg = 'background-research.jpg';
-      if(tab === 'missions') bg = 'background-missions.jpg';
-      document.body.style.backgroundImage = `url('${bg}')`;
+      if(tab === 'missions') bg = '';
+      document.body.style.backgroundImage = bg ? `url('${bg}')` : 'none';
       // Scroll-driven video for Missions tab
-      if(tab === 'missions') setupScrollVideo();
+      if(tab === 'missions') setupScrollVideoBg();
     }
-    function setupScrollVideo() {
-      const video = document.getElementById('missionsVideo');
+    function setupScrollVideoBg() {
+      const video = document.getElementById('missionsBgVideo');
       if (!video) return;
+      video.currentTime = 0;
+      video.pause();
       video.addEventListener('loadedmetadata', function() {
         window.addEventListener('scroll', function scrollHandler() {
           const missionsTab = document.getElementById('missions');
@@ -141,13 +143,11 @@
       <p>Coming soon...</p>
     </div>
   </div>
-  <div class="container tab-content" id="missions">
-    <div class="bio">
+  <div class="container tab-content" id="missions" style="position:relative; overflow:hidden;">
+    <video id="missionsBgVideo" src="missions-video.mp4" preload="auto" muted loop playsinline style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.35;"></video>
+    <div class="bio" style="position:relative; z-index:1; width:100%;">
       <h2>Missions</h2>
-      <div style="position:relative; width:100%; max-width:600px; margin:auto;">
-        <video id="missionsVideo" src="missions-video.mp4" preload="auto" muted style="width:100%; display:block;"></video>
-      </div>
-      <p>Scroll down to scrub through the video.</p>
+      <p>Scroll down to scrub through the video background.</p>
     </div>
   </div>
 </body>
