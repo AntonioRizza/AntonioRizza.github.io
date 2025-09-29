@@ -6,11 +6,12 @@
   <title>Antonio Rizza</title>
   <style>
     body {
-      background: #111 url('background.jpg') no-repeat center center fixed;
+      background: #111 url('background-about.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       margin: 0;
       font-family: system-ui, sans-serif;
+      transition: background-image 0.5s;
     }
     .navbar {
       width: 100%;
@@ -75,7 +76,7 @@
       }
     }
     .tab-content { display: none; }
-    .tab-content.active { display: inherit; }
+    .tab-content.active { display: flex; }
   </style>
   <script>
     function showTab(tab) {
@@ -83,6 +84,12 @@
       document.getElementById(tab).classList.add('active');
       document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
       document.getElementById('nav-' + tab).classList.add('active');
+      // Change background depending on tab
+      let bg = 'background-about.jpg';
+      if(tab === 'Publications') bg = 'background-publications.jpg';
+      if(tab === 'research') bg = 'background-research.jpg';
+      if(tab === 'missions') bg = 'background-missions.jpg';
+      document.body.style.backgroundImage = `url('${bg}')`;
     }
     window.onload = function() {
       showTab('about');
