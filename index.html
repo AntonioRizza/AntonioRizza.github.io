@@ -12,6 +12,30 @@
       margin: 0;
       font-family: system-ui, sans-serif;
     }
+    .navbar {
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 0 0 12px 0;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 16px 0 8px 0;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s, color 0.2s;
+    }
+    .nav-link.active, .nav-link:hover {
+      color: #4fd1c5;
+      border-bottom: 2px solid #4fd1c5;
+    }
     .container {
       background: rgba(0,0,0,0.7);
       color: inherit;
@@ -46,22 +70,62 @@
         margin-right: 0;
         margin-bottom: 24px;
       }
+      .navbar {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+      }
+      .nav-link {
+        padding: 12px 0 6px 0;
+      }
     }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+      document.getElementById('nav-' + tab).classList.add('active');
+    }
+    window.onload = function() {
+      showTab('about');
+    };
+  </script>
 </head>
 <body>
-  <div class="container">
+  <nav class="navbar">
+    <a href="#" class="nav-link active" id="nav-about" onclick="showTab('about');return false;">About</a>
+    <a href="#" class="nav-link" id="nav-pubblications" onclick="showTab('pubblications');return false;">Pubblications</a>
+    <a href="#" class="nav-link" id="nav-research" onclick="showTab('research');return false;">Research Projects</a>
+    <a href="#" class="nav-link" id="nav-missions" onclick="showTab('missions');return false;">Missions</a>
+  </nav>
+  <div class="container tab-content active" id="about">
     <div class="bio">
       <h2>Antonio Rizza</h2>
-        <p>Antonio Rizza is a Postdoctoral Researcher at Stanford University in the
-             Space Rendezvous Laboratory working on autonomous Guidance
-            Navigation and Control for Distributed Space Systems. 
-            He has a PhD in aerospace engineering from Politecnico di Milano 
-            where he focused on autonomous goal-oriented guidance for small bodies
-            proximity operations and developed GNC solutions for the Milani and LUMIO CubeSats.</p>
+      <p>Antonio Rizza is a Postdoctoral Researcher at Stanford University in the Space Rendezvous Laboratory working on autonomous Guidance Navigation and Control for Distributed Space Systems. He has a PhD in aerospace engineering from Politecnico di Milano where he focused on autonomous goal-oriented guidance for small bodies proximity operations and developed GNC solutions for the Milani and LUMIO CubeSats.</p>
     </div>
     <div>
       <img src="antonio_rizza.jpg" alt="Profile Picture" width="200" height="200" class="profile-pic" />
+    </div>
+  </div>
+  <div class="container tab-content" id="pubblications">
+    <div class="bio">
+      <h2>Pubblications</h2>
+      <p>Coming soon...</p>
+    </div>
+  </div>
+  <div class="container tab-content" id="research">
+    <div class="bio">
+      <h2>Research Projects</h2>
+      <p>Coming soon...</p>
+    </div>
+  </div>
+  <div class="container tab-content" id="missions">
+    <div class="bio">
+      <h2>Missions</h2>
+      <p>Coming soon...</p>
     </div>
   </div>
 </body>
