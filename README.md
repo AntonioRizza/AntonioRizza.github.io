@@ -1,7 +1,5 @@
 <body style="background: #111; color: #fff;">
 
-# Work in Progress
-
 <div style="background: transparent; color: inherit; padding: 32px; border-radius: 12px; display: flex; align-items: flex-start; justify-content: space-between;">
   <div style="flex: 1; margin-right: 32px;">
     <h2 style="color: #fff;">About Me</h2>
@@ -12,6 +10,6 @@
   </div>
 </div>
 
----
+
 
 </body>
