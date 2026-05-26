@@ -77,6 +77,129 @@
     }
     .tab-content { display: none; }
     .tab-content.active { display: flex; }
+    .cv-timeline {
+      position: relative;
+      margin: 2.5em 0 2em 120px;
+      padding-left: 40px;
+    }
+    .cv-timeline-line {
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, #e40b0b 0%, #e40b0b 100%);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .cv-timeline-entry {
+      position: relative;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+    .cv-timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: #4fd1c5;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      position: absolute;
+      left: -32px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      box-shadow: 0 2px 8px #222;
+    }
+    .cv-timeline-date {
+      min-width: 120px;
+      font-weight: bold;
+      color: #4fd1c5;
+      margin-right: 18px;
+      font-size: 1.05em;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .cv-timeline-content {
+      background: rgba(30,40,50,0.85);
+      border-radius: 8px;
+      padding: 12px 18px 10px 18px;
+      box-shadow: 0 2px 8px #1118;
+      color: #fff;
+      flex: 1;
+    }
+    .cv-timeline-place {
+      display: block;
+      font-size: 0.98em;
+      color: #b5e6e0;
+      margin-bottom: 2px;
+      margin-top: 2px;
+    }
+    .cv-timeline-desc {
+      font-size: 0.97em;
+      color: #ccc;
+      margin-top: 4px;
+    }
+    .mission-section {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      padding: 48px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mission-section:last-child {
+      border-bottom: none;
+    }
+    .mission-section.reverse {
+      flex-direction: row-reverse;
+    }
+    .mission-text {
+      flex: 1;
+    }
+    .mission-name {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0 0 4px 0;
+      letter-spacing: -0.5px;
+    }
+    .mission-role {
+      color: #4fd1c5;
+      font-size: 1rem;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .mission-desc {
+      color: #d0d8e0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .mission-image {
+      flex: 1;
+      aspect-ratio: 4 / 3;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .mission-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    @media (max-width: 900px) {
+      .mission-section, .mission-section.reverse {
+        flex-direction: column;
+        gap: 24px;
+        padding: 32px 0;
+      }
+    }
   </style>
   <script>
     function showTab(tab) {
@@ -88,7 +211,7 @@
       let bg = 'background-about.jpg';
       if(tab === 'Publications') bg = 'background-publications.jpg';
       if(tab === 'research') bg = 'background-research.jpg';
-      if(tab === 'missions') bg = 'background-missions.jpg';
+      if(tab === 'missions') bg = 'milky_way.avif';
       document.body.style.backgroundImage = `url('${bg}')`;
     }
     window.onload = function() {
@@ -103,31 +226,283 @@
     <a href="#" class="nav-link" id="nav-research" onclick="showTab('research');return false;">Research Projects</a>
     <a href="#" class="nav-link" id="nav-missions" onclick="showTab('missions');return false;">Missions</a>
   </nav>
-  <div class="container tab-content active" id="about">
+  <div class="container tab-content active" id="about" style="flex-direction:column;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;width:100%;">
     <div class="bio">
       <h2>Antonio Rizza</h2>
-      <p>Antonio Rizza is a Postdoctoral Researcher at Stanford University in the Space Rendezvous Laboratory working on autonomous Guidance Navigation and Control for Distributed Space Systems. He has a PhD in aerospace engineering from Politecnico di Milano where he focused on autonomous goal-oriented guidance for small bodies proximity operations and developed GNC solutions for the Milani and LUMIO CubeSats.</p>
+      <p>Spacecraft Guidance Navigation and Control (GNC) Engineer. Expert in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Seven years of experience in research on autonomous space robotics probes, with leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the US. Currently focused at Stanford on enabling and flight testing ground breaking GNC technologies for distributed space systems that can be pivotal in the current landscape of Space exploration and exploitation. GNC Engineer for the <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">Milani</a>, <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">LUMIO</a>, and <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">STARI</a> missions.</p>
     </div>
     <div>
-      <img src="antonio_rizza.jpg" alt="Profile Picture" width="200" height="200" class="profile-pic" />
+      <img src="antonio_rizza_cut.jpg" alt="Profile Picture" width="200" height="200" class="profile-pic" />
+    </div>
+    </div>
+    <div class="bio" style="width:100%;margin-right:0;">
+      <h2 style="margin-top:1.5em;">Research Experience</h2>
+      <div class="cv-timeline">
+        <div class="cv-timeline-line"></div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">01/2025 - ongoing</div>
+          <div class="cv-timeline-content">
+            <b>Postdoctoral Scholar</b> <span class="cv-timeline-place">Stanford University - SLAB team</span>
+            <div class="cv-timeline-desc">Enabling safe, robust and high precision GNC solutions for the next generation of distributed space systems. Lead GNC engineer for the STARI mission.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">11/2024 - 12/2024</div>
+          <div class="cv-timeline-content">
+            <b>Research Fellow (Senior)</b> <span class="cv-timeline-place">Politecnico di Milano - DART team</span>
+            <div class="cv-timeline-desc">Developing guidance and control solution for proximity operations around small bodies. Supporting the development of a robotic facility for validation and verification of GNC algorithm.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">01/2023 - 12/2023</div>
+          <div class="cv-timeline-content">
+            <b>Visiting Research Scholar</b> <span class="cv-timeline-place">Stanford University - SLAB team</span>
+            <div class="cv-timeline-desc">Goal-oriented trajectory optimization about asteroids using sequential convex programming. Hardware in the loop validation of Active SLAM approaches using the robotic testbed for rendezvous and optical navigation at SLAB.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">11/2021 - 11/2024</div>
+          <div class="cv-timeline-content">
+            <b>PhD <i>cum laude</i> in Aerospace Engineering</b> <span class="cv-timeline-place">Politecnico di Milano - DART team</span>
+            <div class="cv-timeline-desc">Goal-oriented guidance under uncertainties for small bodies exploration. GNC engineer for the Milani and LUMIO missions.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">11/2020 - 10/2021</div>
+          <div class="cv-timeline-content">
+            <b>Research Fellow</b> <span class="cv-timeline-place">Politecnico di Milano - DART team</span>
+            <div class="cv-timeline-desc">Development of high-fidelity six-degrees-of-freedom simulator for autonomous deep-space missions.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">10/2019 - 06/2020</div>
+          <div class="cv-timeline-content">
+            <b>M.Sc. Thesis</b> <span class="cv-timeline-place">VKI, Belgium</span>
+            <div class="cv-timeline-desc">Simulation and testing of gas-surface interaction phenomena in atmospheric re-entry conditions for Design for Demise analysis.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">08/2017 - 09/2017</div>
+          <div class="cv-timeline-content">
+            <b>Research Internship</b> <span class="cv-timeline-place">VKI, Belgium</span>
+            <div class="cv-timeline-desc">Software developer for the VKI Expandable Stability and Transition Analysis toolkit to predict boundary layer transition in high speed flow.</div>
+          </div>
+        </div>
+      </div>
+      <h2 style="margin-top:2em;">Education</h2>
+      <div class="cv-timeline">
+        <div class="cv-timeline-line"></div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">09/2017 - 06/2020</div>
+          <div class="cv-timeline-content">
+            <b>M.Sc. <i>cum laude</i> in Space Engineering</b> <span class="cv-timeline-place">Politecnico di Milano</span>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">05/2019 - 05/2019</div>
+          <div class="cv-timeline-content">
+            <b>ESA Academy Space Debris Training Course</b> <span class="cv-timeline-place">ESEC GALAXIA, Belgium</span>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">10/2014 - 09/2017</div>
+          <div class="cv-timeline-content">
+            <b>Bachelor's in Aerospace Engineering</b> <span class="cv-timeline-place">Politecnico di Milano</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container tab-content" id="Publications">
-    <div class="bio">
-      <h2>Publications</h2>
-      <p>Coming soon...</p>
+  <div class="container tab-content" id="Publications" style="background:rgba(255,255,255,0.95);">
+    <div class="bio" style="width:100%;max-width:100%;">
+      <h2 style="color:#111;">Publications <span style="font-size:0.75rem;font-weight:normal;color:#555;">— <a href="https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it" target="_blank" style="color:#1a9e96;">Google Scholar</a></span></h2>
+      <div style="margin-bottom:1.5em;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <span style="color:#555;font-size:0.9em;">Sort by:</span>
+        <button onclick="sortPubs('year')" id="sort-year" style="background:rgba(26,158,150,0.12);border:1px solid #1a9e96;color:#1a9e96;padding:4px 14px;border-radius:20px;cursor:pointer;font-size:0.9em;">Year</button>
+        <button onclick="sortPubs('citations')" id="sort-citations" style="background:transparent;border:1px solid #bbb;color:#555;padding:4px 14px;border-radius:20px;cursor:pointer;font-size:0.9em;">Citations</button>
+      </div>
+      <div id="pub-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+      <script>
+        const publications = [
+          // 2026
+          { title: "The Hera Milani Mission: Use of a Nanosatellite for Planetary Defence Purposes", authors: "M Cardi, M Pavoni, D Calvi, A Zanotti, F Corradino, E Sanguineti, et al.", venue: "Space Science Reviews 222 (4), 49", year: 2026, citations: 0, doi: "10.1007/s11214-026-01287-6" },
+          { title: "Convex Trajectory Optimization via Monomial Coordinates Transcription for Cislunar Rendezvous", authors: "O Regantini, ER Burnett, A Rizza, A Morselli, F Topputo", venue: "Journal of Guidance, Control, and Dynamics", year: 2026, citations: 0, doi: "10.2514/1.g009332" },
+          { title: "Introducing the STARI Mission: STarlight Acquisition and Reflection toward Interferometry", authors: "J Monnier, J Cutler, A Dubey, S Sunil, B Bialke, C Burkhardt, H Cherry, et al.", venue: "American Astronomical Society Meeting Abstracts 247, 204.04", year: 2026, citations: 0 },
+          { title: "Autonomous Visual Active SLAM for Close Proximity Operations to Small Bodies Combining Goal-Oriented Guidance and Graph-Based Navigation", authors: "P Califano, A Beshaj, F Piccolo, A Rizza, F Topputo, P Panicucci", venue: "48th AAS Guidance, Navigation and Control Conference", year: 2026, citations: 0 },
+          { title: "Space Interferometry Formation Design Using Relative Orbital Elements: The STARI Mission", authors: "A Rizza, E Foss, J Monnier, JW Cutler, S D'Amico", venue: "2026 IEEE Aerospace Conference, Big Sky, Montana", year: 2026, citations: 4, doi: "10.1109/aero66936.2026.11519799", pdf: "https://slab.stanford.edu/sites/g/files/sbiybj25201/files/media/file/ieee_stari_trajectory_design-17.pdf" },
+          { title: "Digital and Robotic Twinning for Validation of Proximity Operations and Formation Flying", authors: "Z Ahmed, E Bates, P Francesch Huc, SYW Low, A Golan, T Bell, A Rizza, S D'Amico", venue: "2026 Rocky Mountain AAS GN&C Conference, AAS 26-146, Breckenridge, CO, February 2026", year: 2026, citations: 2, arxiv: "2507.20034", pdf: "https://slab.stanford.edu/sites/g/files/sbiybj25201/files/media/file/drt_rpokit_aas_gnc_2026_compressed_v2.pdf" },
+          // 2025
+          { title: "A Goal-Oriented Guidance Approach for Binary Asteroids Exploration", authors: "A Rizza, C Giordano, F Topputo", venue: "Astrodynamics 9 (2), 289–302", year: 2025, citations: 7, doi: "10.1007/s42064-024-0237-1" },
+          { title: "Goal-Oriented Trajectory Refinement for Asteroid Mapping Using Sequential Convex Programming", authors: "A Rizza, S D'Amico, F Topputo", venue: "Journal of Guidance, Control, and Dynamics, 2025", year: 2025, citations: 6, doi: "10.2514/1.g008976" },
+          { title: "LUMIO CubeSat: Current Status and Lessons Learnt (So Far)", authors: "F Topputo, F Ferrari, C Giordano, P Panicucci, C Buonagura, A Martinelli, et al.", venue: "Small Satellites Systems and Services Symposium (4S 2024)", year: 2025, citations: 6, doi: "10.1117/12.3061585" },
+          { title: "The Hera Milani Mission", authors: "M Cardi, M Pavoni, D Calvi, A Zanotti, F Corradino, E Sanguineti, et al.", venue: "Small Satellites Systems and Services Symposium (4S 2024)", year: 2025, citations: 6, doi: "10.1117/12.3061582" },
+          { title: "Fast Autonomous Lost-in-Space Catalog-Based Optical Navigation (FALCON)", authors: "A Rizza, J Kruger, S D'Amico", venue: "2025 AAS/AIAA Astrodynamics Specialist Conference, AAS 25-640, Boston, MA, August 2025", year: 2025, citations: 1, pdf: "https://slab.stanford.edu/sites/g/files/sbiybj25201/files/media/file/aiaa_asc_2025-falcon_preprint.pdf" },
+          { title: "Robust Guidance for Surface Characterization of Minor Bodies", authors: "A Beshaj, A Rizza, C Giordano, F Topputo", venue: "76th International Astronautical Congress (IAC 2025)", year: 2025, citations: 1 },
+          { title: "Goal-Oriented Guidance Under Uncertainties for Small Bodies Proximity Operations", authors: "A Rizza, S D'Amico, F Topputo", venue: "2025 AAS/AIAA Space Flight Mechanics Meeting, Kaua'i, HI, January 2025", year: 2025, citations: 2, pdf: "https://slab.stanford.edu/sites/g/files/sbiybj25201/files/media/file/rizza_sfm2025.pdf" },
+          // 2024
+          { title: "Goal-Oriented Asteroid Mapping Under Uncertainties Using Sequential Convex Programming", authors: "A Rizza, F Topputo, S D'Amico", venue: "2024 AIAA SciTech Forum and Exposition, Orlando, FL, January 8–12, 2024", year: 2024, citations: 15, doi: "10.2514/6.2024-1990", pdf: "https://slab.stanford.edu/sites/g/files/sbiybj25201/files/media/file/arizza_asteroidmapping_scitech_2024.pdf" },
+          { title: "Vision-Based Navigation for the LUMIO CubeSat Mission", authors: "P Panicucci, F Piccolo, A Rizza, G Merisio, F Topputo, R Walker", venue: "46th AAS Guidance, Navigation and Control Conference", year: 2024, citations: 14 },
+          { title: "Gradient Based Reachability Analysis for Goal-Oriented Guidance. Application to Eros Proximity Operations", authors: "A Rizza, F Topputo", venue: "arXiv:2408.15271", year: 2024, citations: 4, arxiv: "2408.15271" },
+          { title: "Uncertainty Propagation Performance in Proximity Operations Around Small Bodies", authors: "N Michelotti, A Rizza, C Giordano, F Topputo", venue: "The Journal of the Astronautical Sciences 71 (6), 55", year: 2024, citations: 3, doi: "10.1007/s40295-024-00472-5" },
+          { title: "Comparison of Uncertainty Propagation Techniques in Small-Body Environment", authors: "N Michelotti, A Rizza, C Giordano, F Topputo", venue: "arXiv:2408.05970", year: 2024, citations: 2, arxiv: "2408.05970" },
+          { title: "Goal-Oriented Guidance Under Uncertainties for Small Bodies Exploration", authors: "A Rizza", venue: "PhD Dissertation, Politecnico di Milano", year: 2024, citations: 2 },
+          { title: "Scientific Observations of the Didymos Binary Asteroid System Using the Milani NavCam", authors: "I Fodde, A Cremasco, F Piccolo, P Califano, L Civati, A Rizza, C Giordano, et al.", venue: "EPSC2024", year: 2024, citations: 0 },
+          { title: "LUMIO: A CubeSat to Detect Meteoroid Impacts on the Lunar Farside", authors: "F Ferrari, F Topputo, C Buonagura, C Giordano, P Panicucci, F Piccolo, et al.", venue: "EGU General Assembly 2024", year: 2024, citations: 0 },
+          { title: "LUMIO: Detecting Meteoroid Impacts on the Lunar Surface", authors: "F Topputo, G Merisio, F Ferrari, C Giordano, C Buonagura, A Martinelli, et al.", venue: "75th International Astronautical Congress (IAC 2024)", year: 2024, citations: 0, doi: "10.52202/078357-0025" },
+          { title: "A Survey of Gravitational Modeling Techniques for Minor Body Proximity Operations", authors: "C Buonagura, A Rizza, C Giordano, F Topputo", venue: "75th International Astronautical Congress (IAC 2024)", year: 2024, citations: 0, doi: "10.52202/078357-0111" },
+          { title: "Scientific and Technological Objectives for the NavCam Payload of Hera's Milani CubeSat to Binary Asteroid Didymos", authors: "I Fodde, A Cremasco, F Piccolo, P Califano, LF Civati, A Rizza, et al.", venue: "75th International Astronautical Congress (IAC 2024)", year: 2024, citations: 1, doi: "10.52202/078357-0088" },
+          { title: "Modular Pipeline for Small Bodies Gravity Field Modeling: An Efficient Representation of Variable Density Spherical Harmonics Coefficients", authors: "A Rizza, C Buonagura, P Panicucci, F Topputo", venue: "arXiv:2409.02531", year: 2024, citations: 1, arxiv: "2409.02531" },
+          // 2023
+          { title: "The Vision-Based Guidance, Navigation, and Control System of Hera's Milani CubeSat", authors: "M Pugliatti, F Piccolo, A Rizza, V Franzese, F Topputo", venue: "Acta Astronautica 210, 14–28", year: 2023, citations: 34, doi: "10.1016/j.actaastro.2023.04.047" },
+          { title: "Current Status of the LUMIO Autonomous Optical Navigation Experiment", authors: "P Panicucci, F Piccolo, S Borgia, A Rizza, V Franzese, F Topputo", venue: "12th ESA GNC-ICATT Conference", year: 2023, citations: 10, doi: "10.5270/esa-gnc-icatt-2023-114" },
+          { title: "Goal-Oriented Guidance Strategy for Binary Asteroid Exploration: Investigation of Different Metrics", authors: "A Rizza, C Giordano, F Topputo", venue: "45th AAS Guidance, Navigation and Control Conference", year: 2023, citations: 6 },
+          { title: "Autonomous Wheel Off-Loading Strategies for Deep-Space CubeSats", authors: "A Pizzetti, A Rizza, F Topputo", venue: "Aerotecnica Missili e Spazio 102, 3–15", year: 2023, citations: 4, doi: "10.1007/s42496-022-00137-2" },
+          { title: "Design, Analysis and Validation of the ADCS for the LUMIO Mission", authors: "A Rizza, F Piccolo, P Panicucci, S Borgia, G Saita, G Fumo, G Merisio, et al.", venue: "74th International Astronautical Congress (IAC 2023)", year: 2023, citations: 2 },
+          { title: "The Hera Milani CubeSat Mission", authors: "C Giordano, F Topputo, F Ferrari, V Franzese, M Pugliatti, F Piccolo, et al.", venue: "5th COSPAR Symposium", year: 2023, citations: 0 },
+          // 2022
+          { title: "The Milani Mission: Overview and Architecture of the Optical-Based GNC System", authors: "M Pugliatti, A Rizza, F Piccolo, V Franzese, C Bottiglieri, C Giordano, et al.", venue: "AIAA SciTech 2022 Forum", year: 2022, citations: 26, doi: "10.2514/6.2022-2381" },
+          { title: "Trajectory Design and Orbit Determination of Hera's Milani CubeSat", authors: "C Bottiglieri, F Piccolo, A Rizza, C Giordano, M Pugliatti, V Franzese, et al.", venue: "Advances in the Astronautical Sciences 177, 1–15", year: 2022, citations: 18 },
+          { title: "Design of the On-Board Image Processing of the Milani Mission", authors: "M Pugliatti, V Franzese, A Rizza, F Piccolo, C Bottiglieri, C Giordano, et al.", venue: "44th AAS Guidance, Navigation and Control Conference", year: 2022, citations: 14, doi: "10.1007/978-3-031-51928-4_72" },
+          { title: "Mission Analysis and Navigation Assessment for Hera's Milani CubeSat", authors: "C Bottiglieri, F Piccolo, A Rizza, M Pugliatti, V Franzese, C Giordano, et al.", venue: "4S Symposium 2022", year: 2022, citations: 9 },
+          { title: "Hardware-in-the-Loop Simulation Framework for CubeSats Proximity Operations: Application to the Milani Mission", authors: "A Rizza, F Piccolo, M Pugliatti, P Panicucci, F Topputo", venue: "73rd International Astronautical Congress (IAC 2022)", year: 2022, citations: 4 },
+          { title: "Design of the Vision-Based GNC Subsystem of Hera's Milani Mission", authors: "F Piccolo, A Rizza, M Pugliatti, V Franzese, C Bottiglieri, C Giordano, et al.", venue: "73rd International Astronautical Congress (IAC 2022)", year: 2022, citations: 1 },
+          // 2021
+          { title: "The Hera Milani CubeSat Mission", authors: "F Topputo, F Ferrari, V Franzese, M Pugliatti, C Giordano, A Rizza, et al.", venue: "7th IAA Planetary Defense Conference", year: 2021, citations: 1 },
+        ];
+
+        let currentSort = 'year';
+
+        function sortPubs(by) {
+          currentSort = by;
+          document.getElementById('sort-year').style.background = by === 'year' ? 'rgba(79,209,197,0.2)' : 'transparent';
+          document.getElementById('sort-year').style.color = by === 'year' ? '#4fd1c5' : '#aaa';
+          document.getElementById('sort-year').style.borderColor = by === 'year' ? '#4fd1c5' : '#555';
+          document.getElementById('sort-citations').style.background = by === 'citations' ? 'rgba(79,209,197,0.2)' : 'transparent';
+          document.getElementById('sort-citations').style.color = by === 'citations' ? '#4fd1c5' : '#aaa';
+          document.getElementById('sort-citations').style.borderColor = by === 'citations' ? '#4fd1c5' : '#555';
+          renderPubs();
+        }
+
+        function renderPubs() {
+          const sorted = [...publications].sort((a, b) => b[currentSort] - a[currentSort]);
+          const list = document.getElementById('pub-list');
+          list.innerHTML = sorted.map((p) => {
+            const badges = [];
+            if (p.pdf) {
+              badges.push(`<a href="${p.pdf}" target="_blank" style="color:#c0392b;text-decoration:none;border:1px solid #c0392b;padding:1px 8px;border-radius:10px;font-size:0.82em;">PDF</a>`);
+            }
+            if (p.doi) {
+              badges.push(`<a href="https://doi.org/${p.doi}" target="_blank" style="color:#1a9e96;text-decoration:none;border:1px solid #1a9e96;padding:1px 8px;border-radius:10px;font-size:0.82em;">DOI</a>`);
+            }
+            if (p.arxiv) {
+              badges.push(`<a href="https://arxiv.org/abs/${p.arxiv}" target="_blank" style="color:#b07d1a;text-decoration:none;border:1px solid #b07d1a;padding:1px 8px;border-radius:10px;font-size:0.82em;">arXiv</a>`);
+            }
+            if (badges.length === 0) {
+              const scholarUrl = 'https://scholar.google.com/scholar?q=' + encodeURIComponent(p.title);
+              badges.push(`<a href="${scholarUrl}" target="_blank" style="color:#666;text-decoration:none;border:1px solid #bbb;padding:1px 8px;border-radius:10px;font-size:0.82em;">Scholar</a>`);
+            }
+            return `
+            <div style="padding:12px 0;border-bottom:1px solid #e8e8e8;">
+              <div style="font-weight:bold;color:#111;margin-bottom:3px;">${p.title}</div>
+              <div style="font-size:0.9em;color:#444;margin-bottom:5px;">${p.authors}</div>
+              <div style="font-size:0.88em;color:#666;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                <span><i>${p.venue}</i></span>
+                <span style="color:#1a9e96;font-weight:bold;">${p.year}</span>
+                <span style="color:#888;">&#128196; ${p.citations} citation${p.citations !== 1 ? 's' : ''}</span>
+                ${badges.join(' ')}
+              </div>
+            </div>`;
+          }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPubs);
+      </script>
     </div>
   </div>
   <div class="container tab-content" id="research">
     <div class="bio">
       <h2>Research Projects</h2>
-      <p>Coming soon...</p>
+      <div class="cv-timeline">
+        <div class="cv-timeline-line"></div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">01/2026 - ongoing</div>
+          <div class="cv-timeline-content">
+            <b>Flight Demonstration of Autonomous Navigation in GEO</b>
+            <div class="cv-timeline-desc">Collaboration with Blue Origin to demonstrate in GEO for the first time autonomous navigation capabilities based on angles-only navigation and CNN-based relative pose estimation to known targets.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">01/2025 - ongoing</div>
+          <div class="cv-timeline-content">
+            <b>FALCON — Research Co-lead</b>
+            <div class="cv-timeline-desc">Fast Autonomous Lost-in-space Catalog-based Optical Navigation (FALCON) is a new alternative space-based Positioning, Navigation and Timing (PNT) system for responsive Space Situational Awareness (SSA) of on-orbit assets.</div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">11/2021 - 11/2024</div>
+          <div class="cv-timeline-content">
+            <b>PhD Research — Politecnico di Milano - DART team</b>
+            <div class="cv-timeline-desc">Goal-oriented guidance and control methodology for proximity operations around small bodies. The approach relies on the combination of abstract reachability analysis to generate the initial trajectory with Sequential Convex Programming (SCP) to refine it within a Model Predictive Control (MPC) framework under navigation, dynamics and control uncertainties. </div>
+          </div>
+        </div>
+        <div class="cv-timeline-entry">
+          <div class="cv-timeline-dot"></div>
+          <div class="cv-timeline-date">11/2020 - 06/2022</div>
+          <div class="cv-timeline-content">
+            <b>PRESS</b>
+            <div class="cv-timeline-desc">Proposal for Rams Enhancing in Small Satellites (PRESS) is a project aimed at improving Reliability, Availability, Maintainability and Safety (RAMS) for CubeSats reducing their currently high failure rate.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container tab-content" id="missions">
-    <div class="bio">
-      <h2>Missions</h2>
-      <p>Coming soon...</p>
+  <div class="container tab-content" id="missions" style="flex-direction:column;">
+    <div style="width:100%;">
+      <h2 style="color:#fff;margin-top:0;">Missions</h2>
+      <div class="mission-section">
+        <div class="mission-text">
+          <div class="mission-name">STARI</div>
+          <div class="mission-role">Orbit and GNC Engineer — Phase A to E</div>
+          <div class="mission-desc">The STarlight Acquisition and Reflection toward Interferometry (STARI) mission is a technology demonstration designed to advance key technologies for future space-based interferometry. The mission makes use of two 8U CubeSats flying in close formation, effectively simulating one arm of a space interferometer.</div>
+        </div>
+        <div class="mission-image">
+          <img src="STARI.png" alt="STARI mission">
+        </div>
+      </div>
+      <div class="mission-section reverse">
+        <div class="mission-text">
+          <div class="mission-name">LUMIO</div>
+          <div class="mission-role">AOCS Engineer — Phase B</div>
+          <div class="mission-desc">The Lunar Meteoroid Impact Observer (LUMIO) is a CubeSat mission to a quasi-halo orbit at the Earth-Moon L2 Lagrangian point designed to complement ground-based observations and characterize the lunar meteoroid environment.</div>
+        </div>
+        <div class="mission-image">
+          <img src="LUMIO.jpg.webp" alt="LUMIO mission">
+        </div>
+      </div>
+      <div class="mission-section">
+        <div class="mission-text">
+          <div class="mission-name">Milani</div>
+          <div class="mission-role">GNC Engineer — Phase A to D</div>
+          <div class="mission-desc">The Milani CubeSat is part of ESA's Hera mission, the European contribution to the ESA-NASA collaboration AIDA (Asteroid Impact &amp; Deflection Assessment) around the binary asteroid 65803 Didymos.</div>
+        </div>
+        <div class="mission-image">
+          <img src="Milani.jpg" alt="Milani mission">
+        </div>
+      </div>
     </div>
   </div>
 </body>
