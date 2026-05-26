@@ -1,0 +1,501 @@
+% SixtySecondsCV LaTeX template
+% Copyright © 2020 L. Gueroult <lgueroult-at-hotmail.com>
+% Licensed under the 3-Clause BSD License. See LICENSE file for details.
+%
+% Please visit https://github.com/LaGuer/SixtySecondsCV for the most
+% recent version! For bugs or feature requests, please open a new issue on
+% github.
+%
+% Contributors
+% ------------
+% * ifokkema
+% * Bertbk
+% * Hespe
+% * esben
+%
+% Attributions
+% ------------
+% * sixtysecondscv is based on the fortysecondcv class by Rene Wirnata
+%   (rene.wirnata@pandascience.net), released under the 3-Clause BSD license and available at
+%   https://github.com/PandaScience/FortySecondsCV/
+% * fortysecondscv is based on the twentysecondcv class by Carmine Spagnuolo
+%   (cspagnuolo@unisa.it), released under the MIT license and available at
+%   https://github.com/spagnuolocarmine/TwentySecondsCurriculumVitae-LaTex
+% * further attributions are indicated immediately before corresponding code
+
+
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+\documentclass[
+	a4paper,
+	% showframes,
+	% vline=2.2em,
+	%maincolor=cvgreen,
+	sidecolor=gray!8,
+	sectioncolor=materialblue,
+	subsectioncolor=materialindigo,
+	% itemtextcolor=black!80,
+	sidebarwidth=0.27\paperwidth,
+	% topbottommargin=0.03\paperheight,
+	% leftrightmargin=20pt,
+	profilepicsize=3.5cm,
+	% profilepicborderwidth=3.5pt,
+	profilepicstyle=profilecircle,
+	profilepiczoom=1.15,
+	% profilepicxshift=0mm,
+	% profilepicyshift=0mm,
+	% profilepicrounding=1.0cm,
+	% logowidth=4.5cm,
+	% logospace=5mm,
+	% logoposition=before,
+]{sixtysecondscv}
+
+%-------------------------------------------------------------------------------
+%                             ADDITIONAL PACKAGES
+%-------------------------------------------------------------------------------
+% improve word spacing and hyphenation
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% uncomment in case you don't want any hyphenation
+% \usepackage[none]{hyphenat}
+
+% take care of proper font encoding
+% \ifxetexorluatex
+% 	\usepackage{fontspec}
+% 	\defaultfontfeatures{Ligatures=TeX}
+%	\newfontfamily\headingfont[Path = fonts/]{segoeuib.ttf} % local font
+% \else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+%	\usepackage[sfdefault]{noto} % use noto google font
+% \fi
+
+% enable mathematical syntax for some symbols like \varnothing
+\usepackage{amssymb}
+
+% bubble diagram configuration
+\usepackage{smartdiagram}
+\smartdiagramset{
+	% default font size is \large, so adjust to harmonize with sidebar layout
+	bubble center node font = \footnotesize,
+	bubble node font = \footnotesize,
+	% default: 4cm/2.5cm; make minimum diameter relative to sidebar size
+	bubble center node size = 0.4\sidebartextwidth,
+	bubble node size = 0.25\sidebartextwidth,
+	distance center/other bubbles = 1.5em,
+	% set center bubble color
+	bubble center node color = maincolor!70,
+	% define the list of colors usable in the diagram
+	set color list = {materiallime, materialamber,
+	materialcyan, materialblue, materialindigo},
+	% sets the opacity at which the bubbles are shown
+	bubble fill opacity = 0.8,
+}
+
+%-------------------------------------------------------------------------------
+%                            PERSONAL INFORMATION
+%-------------------------------------------------------------------------------
+%% mandatory information
+% your name
+\cvname{Antonio Rizza}
+% job title/career
+\cvjobtitle{Postdoctoral \\ \\Researcher \\ \\
+% \small Date of birth: 18/12/1995\\
+% Place of birth: Padova (PD)\\
+% Tax code: RZZNTN95T18G224W
+}
+
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/Germany.png}
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/France.png}
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/Spain.png}
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/United-States.png}
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/Russia.png}
+\write18{wget https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/64/Switzerland.png}
+\write18{wget https://ipfs.io/ipfs/QmZiD898vX1yaukukNbgbuSoUtqVRD262k4qK4xWB523LM?filename=QmZiD898vX1yaukukNbgbuSoUtqVRD262k4qK4xWB523LM.png}
+
+
+%% optional information
+% profile picture
+\cvprofilepic{antonio_rizza_cut.jpg}
+% logo picture
+%\cvlogopic{pics/logo_txt.png}
+
+% NOTE: ordering in sidebar will mimic the following order
+% date of birth
+% \cvbirthday{\today}
+% short address/location, use \newline if more than 1 line is required
+
+% ADD ADDRESS HERE
+
+% \cvaddress{Viale G. Grassi 113, Lecce, Italy}
+% phone number
+% \cvphone{(+39) 3209218918}
+% skype ID
+% \cvskype{myskypeID}
+% personal website
+% \cvsite{https://laguer.github.io/sixtysecondscv/}
+% email address
+
+\cvmail{arizza@stanford.edu}
+
+
+% \cvmail{antonio.rizza.mail@gmail.com}
+% pgp key
+% \cvkey{4096R/FF00FF00}{0xAABBCCDDFF00FF00}
+% any other custom entry
+% \cvcustomdata{}}
+\cvsite{https://antoniorizza.github.io}{Personal Website}
+\cvlinkedin{antoniorizza95}
+\cvscholar{https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it}{Google Scholar}
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 1st PAGE
+%-------------------------------------------------------------------------------
+% add more profile sections to sidebar on first page
+\addtofrontsidebar{
+	% include gosquare national flags from https://github.com/gosquared/flags;
+	% naming according to ISO 3166-1 alpha-2 country codes
+	\graphicspath{{pics/flags/shiny/}}
+	\vspace{2ex}
+
+% 	% social network accounts incl. proper hyperlinks
+% 	\profilesection{Social Network}
+% 		\begin{icontable}{2.5em}{1em}
+% 			\social{\aiOverleafSquare}
+% 				{https://www.overleaf.com/latex/templates/SixtySecondsCV/}
+% 				{Overleaf Link}
+% 			\social{\aiResearchGate}
+% 				{https://www.researchgate.net/profile/}
+% 				{Researchgate Link}
+% 			\social{\faGithub}
+% 				{https://github.com/LaGuer/SixtySecondsCV}
+% 				{Github Project Page Link}
+% 		\end{icontable}
+
+	\profilesection{Languages}
+	\normalsize
+	Italian, English, Spanish, French \hspace{3cm}
+	\vspace{0.01cm}
+        \profilesection{Expertise}
+
+    \vspace{0.01cm}
+   Spacecraft GNC\\
+
+   Astrodynamics and Formation\\ Flying\\ 
+      
+   Modeling and Simulation of Space Systems \\
+
+   Dynamical Systems Theory\\
+
+   Optimal Control Theory\\
+   
+   Non-linear State Estimation\\
+
+	\vspace{0.01cm}
+    \profilesection{Computer Skills}
+    % \large \textbf{Confident}\\ \normalsize
+    \vspace{0.01cm}
+	MATLAB/Simulink\\
+
+    C++, Python (VSCode)\\
+    
+    NASA tools (SPICE, GMAT)\\
+    
+    CAD tools (SolidWorks, Solid Edge, Inventor)\\
+    
+    % Editors/Styles (LaTeX, Office, VSCode)\\
+
+    % OS  (iOS, Linux, Windows)
+	\vspace{0.01cm}
+
+
+		{\footnotesize \color{black!70} \hfill 
+
+% 	In compliance with the European Regulation 679/2016, I hereby authorize you to use and process my personal data
+}
+    %\pointskill{\flag{Russia.png}}{Russia}{5}
+    
+%     \begin{figure}\centering
+% 		\smartdiagram[bubble diagram]{
+% 			\textcolor{white}{\textbf{Being a}} \\
+% 			\textcolor{white}{\textbf{Panda}}, % center bubble
+% 			\textcolor{black!90}{Eating},
+% 			\textcolor{black!90}{Sleeping},
+% 			\textcolor{black!90}{Rolling},
+% 			\textcolor{black!90}{Playing},
+% 			\textcolor{black!90}{Chilling}
+% 		}
+% 	\end{figure}
+	
+% 	\profilesection{Barskills}
+% 	\barskill{\faSkyatlas}{Wearing asian rice hats}{60}
+% 	\barskill{\faImage}{Playing Chess}{30}
+% 	\barskill{\faMusic}{Playing the bamboo stick}{50}
+}
+    
+
+%-------------------------------------------------------------------------------
+%                              SIDEBAR 2nd PAGE
+%-------------------------------------------------------------------------------
+\addtobacksidebar{
+
+}
+
+
+%-------------------------------------------------------------------------------
+%                         TABLE ENTRIES RIGHT COLUMN
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\makefrontsidebar
+
+
+\cvsection{Headline}
+% \begin{center}
+\normalsize
+
+I am a Spacecraft Guidance Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. I had leading GNC roles for Low Earth Orbit (LEO) and deep-space missions sponsored by national agencies. At Stanford, I am currently focused on enabling GNC solutions for the next generation of distributed space systems. I have been GNC Engineer for the \href{https://tyvak.eu/missions/milani/}{\textcolor{materialblue}{Milani}}, \href{https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Shaping_the_Future/LUMIO_New_CubeSat_Illuminating_Lunar_Impacts}{\textcolor{materialblue}{LUMIO}}, and \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} mission.
+
+%   Enthusiastic and motivated Space Engineer, with strong background in GNC, System Engineering and ground testing methodologies for Aerothermal Demise. Currently enrolled in a PhD course at Politecnico di Milano.
+
+% \end{center}
+\cvsection{Research Experience}
+\begin{cvtable}[1.5]
+\cvitem{\mbox{01/2025 - ongoing}}{Postdoctoral Scholar}{Stanford University - SLAB team}{Enabling safe, robust and high precision GNC solutions for the next generation of distributed space systems. Lead GNC engineer for the \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} mission.}
+
+\cvitem{\mbox{11/2024 - 12/2024}}{Research Fellow (Senior)}{Politecnico di Milano - DART team}{Developing guidance and control solution for proximity opeartions around small bodies. Supporting the development of a robotic facility for validation and verification of GNC algorithm.}
+
+\cvitem{\mbox{01/2023 - 12/2023}}{Visiting Research Scholar}{Stanford University - SLAB team}{Goal-oriented trajectory optimization about asteroids using sequential convex programming. Hardware in the loop validation of Active SLAM approaches using the robotic testbed for rendezvous and optical navigation at SLAB.}
+
+\cvitem{\mbox{11/2021 - 11/2024}}{PhD (\textit{cum laude}), Aerospace Eng.}{Politecnico di Milano - DART team}{Goal-oriented guidance under uncertainties for small bodies exploration. GNC engineer for the \href{https://tyvak.eu/missions/milani/}{\textcolor{materialblue}{Milani}} and \href{https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Shaping_the_Future/LUMIO_New_CubeSat_Illuminating_Lunar_Impacts}{\textcolor{materialblue}{LUMIO}} missions.}
+
+% guidance methodologies for on-board real-time implementation in deep-space CPOD scenarios.}
+\cvitem{\mbox{11/2020 - 10/2021}}{Research Fellow}{\normalsize \textit{Politecnico di Milano - DART team}}{Development of high-fidelity six-degrees-of-freedom simulator for autonomous deep-space missions.}
+
+% \cvitem{10/2019 - 06/2020}{M.Sc. Thesis}{\normalsize \textit{VKI, Belgium} }{Simulation and testing of gas-surface interaction phenomena in \\ atmospheric re-entry conditions for Design for Demise analysis.}
+
+% \cvitem{08/2017 - 09/2017}{Research Internship}{\normalsize \textit{VKI, Belgium}}{
+% 		Software developer for the VKI Expandable Stability and Transition Analysis toolkit to predict boundary layer transition in high speed flow.}
+\end{cvtable}
+% \vspace{0.5cm}
+
+\cvsection{Education}
+% \cvsubsection{Postgraduate Training}
+\begin{cvtable}[1.5]
+\cvitem{\mbox{09/2017 - 06/2020}}{M.Sc. \textit{cum laude} in Space Engineering }{\normalsize \textit{Politecnico di Milano}}{}
+% \cvitem{05/2019}{\textbf{ESA Accademy Space Debris Training Course}}{\normalsize \textit{ESEC GALAXIA, Belgium}}{}
+\cvitem{\mbox{10/2014 - 09/2017}}{Bachelor's in Aerospace Engineering}{\normalsize \textit{Politecnico di Milano}}{}
+\end{cvtable}
+% \vspace{0.5cm}
+
+% \begin{cvtable}[1.5]
+% 	\cvitem{}{Spacecraft Attitude Dynamics and Control Course}{\normalsize \textit{Politecnico di Milano}}{}
+% 	\cvitem{}{Spacecraft Attitude Dynamics and Control Course}{\normalsize \textit{Politecnico di Milano}}{}
+% % \cvitem{09/2021-12/2021}{Spacecraft Attitude Dynamics and Control Course}{Politecnico di Milano}
+% \end{cvtable}
+
+\cvsection{Research projects and Missions} 
+% \cvsubsection{Postgraduate Training}
+\begin{cvtable}[1.5]
+\cvitem{01/2026-ongoing}{Flight Demonstration of Autonomous Navigation in GEO}{}{Collaboration with Blue Origin to demonstrate in  GEO for the first time autonomous navigation capabilities based on angles only navigation and CNN-based relative pose estimation to known targets.}
+
+\cvitem{01/2025-ongoing}{FALCON - Research Co-lead}{}{Fast Autonomous Lost-in-space Catalog-based Optical Navigation (\href{https://slab.stanford.edu/projects/falcon}{\textcolor{materialblue}{FALCON}}) is a new alternative space-based Positioning, Navigation and Timing (PNT) system for responsive Space Situational Awareness (SSA) of on-orbit assets.}
+
+\cvitem{01/2025-ongoing}{STARI - Orbit and GNC Engineer - Phase A to E}{}{The STarlight Acquisition and Reflection toward Interferometry (\href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}}) mission is a technology demonstration designed to advance key technologies for future space-based interferometry. The mission makes use of two 8U CubeSats flying in close formation, effectively simulating one arm of a space interferometer.}
+
+\cvitem{09/2022-12/2024}{LUMIO - AOCS Engineer - Phase B}{}{The Lunar Meteoroid Impact Observer (\href{https://dart.polimi.it/projects/}{\textcolor{materialblue}{LUMIO}}) is a CubeSat mission to a quasi-halo orbit at the Earth-Moon L2 Lagrangian point designed to complement ground based observations and characterize the lunar meteoroid environment.}
+
+\cvitem{11/2020-06/2022}{Milani - GNC Engineer - Phase A to D}{}{The (\href{https://dart.polimi.it/projects/}{\textcolor{materialblue}{Milani}}) CubeSat is part of ESA's Hera mission, the European contribution to the ESA-NASA collaboration AIDA (Asteroid Impact \& Deflection Assessment) around the binary asteroid 65803 Didymos.}
+\end{cvtable}
+% \vspace{0.5cm}
+
+% \cvsection{Teaching and tutoring}
+
+% Grading and tutoring graduate students for the course AA279D \textit{Control of Distributed Space Systems} at Stanford University.\\
+
+% Teaching assistant for the graduate course in \textit{Spacecraft Attitude Dynamics and Control} at Politecnico di Milano for two years.\\
+
+% Co-advisor of PhD, master and undergraduate students at the Space Rendezvous Laboratory (SLAB) at Stanford University. \\
+
+% Co-advisor of tens of M.Sc. students during their final thesis work at the Deep-space Astrodynamics Research and Technology (DART) group at Politecnico di Milano.\\
+
+% \cvsection{Publication records}
+
+% \url{https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it}
+% \vspace{0.5cm}
+
+% \cvsection{Journals}
+
+% \textbf{A. Rizza}, C. Giordano, F. Topputo. "Goal-Oriented Guidance Strategy for Binary Asteroid Exploration".  Astrodynamics (In-press-2024) .\\
+
+% \textbf{A. Rizza}, S. D'Amico, F. Topputo. "Goal-oriented Guidance under Uncertainties for ASteroid Mapping using Sequential Convex Programming". Under review for Journal of Guidance Control \& Dynamics (JGCD) (2024).\\
+
+% M. Pugliatti, F. Piccolo, \textbf{A. Rizza}, V. Franzese, F. Topputo. "The vision-based guidance, navigation, and control system of Hera's Milani Cubesat". Acta Astronautica (2023).\\
+
+% % \vspace{0.5cm}
+
+% \cvsection{Conferences}
+
+% \textbf{A. Rizza}, S. D'Amico, F. Topputo, “Goal-oriented guidance under uncertainties for small bodies exploration". 2025 AAS/AIAA Space Flight Mechanics Meeting,
+% Kaua'i, Hawaii, January 19-23 2025 (SFMM25). \\
+
+
+% \textbf{A. Rizza}, C. Bonagura, P. Panicucci, F. Topputo, “Modular Pipeline for Small Bodies Gravity Field Modeling: Enhancing accuracy and efficiency for proximity operations". Accepted for presentation at the 75th International Astronautical Congress 2024 (IAC2024). \\
+
+% \textbf{A. Rizza}, F. Topputo, “Gradient based reachability analysis for goal-oriented guidance. Application to Eros proximity operations,” 6th International Workshop on Key Topics in Orbit Propagation Applied to SSA, Arras, June 12-14, 2024 (KePassa2024). \\
+
+% \textbf{A. Rizza}, F. Topputo, and S. D’Amico, “Goal-oriented asteroid mapping under uncertainties using Sequential Convex Programming,” AIAA SCITECH 2024 Forum, (SciTech2024). \\
+
+% \textbf{A. Rizza}, C. Giordano, F. Topputo. "Goal-Oriented Guidance Strategy for Binary Asteroid Exploration: Investigation of Different Metrics." In 45th AAS Guidance, Navigation and Control Conference (GN\&C 2023).\\
+
+% \textbf{A. Rizza}, F. Piccolo, P. Panicucci, S. Borgia, G. Saita, G. Fumo, G. Merisio, L. Provinciali, F. Topputo. "Design, Analysis and Validation of the ADCS for the LUMIO mission." 74th International Astronautical Congress 2023 (IAC2023).\\
+
+% P. Panicucci, F. Piccolo, S. Borgia, \textbf{A. Rizza}, V. Franzese, & F. Topputo. (2023). "Current Status of the LUMIO Autonomous Optical Navigation Experiment". In the 12th International Conference on Guidance, Navigation \& Control Systems (GNC) and 9th International Conference on Astrodynamics Tools and Techniques (ICATT).\\
+
+% \textbf{A. Rizza}, F. Piccolo, M. Pugliatti, P. Panicucci, F. Topputo, "Hardware-in-the-loop simulation framework for CubeSats proximity operations: application to the Milani mission". 73rd International Astronautical Congress (IAC), Paris, France, 18-22 September 2022. (IAC2022)\\
+
+% M. Pugliatti, \textbf{A. Rizza}, F. Piccolo, V. Franzese, C. Bottiglieri, C. Giordano, F. Ferrari, F. Topputo. "The Milani mission: overview and architecture of the optical-based GNC system". In 2022 AAS San Diego (AAS 2022).\\
+
+% M. Pugliatti, V. Franzese, \textbf{A. Rizza}, F. Piccolo, C. Bottiglieri, C. Giordano, F. Ferrari, F. Topputo. "Design of the on-board image processing of the milani mission". In 2022 AAS/AIAA Astrodynamics Specialist Conference (AAS 2022).\\
+
+% C. Bottiglieri, F. Piccolo, \textbf{A. Rizza}, C. Giordano, M. Pugliatti, V. Franzese, F. Ferrari, F. Topputo. "Trajectory design and orbit determination of Hera's Milani CubeSat". In 2021 AAS/AIAA Astrodynamics Specialist Conference (AAS 2021).\\
+
+% \textbf{A. Rizza}, M. Pugliatti, F. Piccolo, V. Franzese, C. Bottiglieri, C. Giordano, F. Ferrari, F. Topputo. "A semi-autonomous optical-based GNC design for Milani mission". In 12th European CubeSat Symposium (ECS 2021).
+
+% \cvsection{Academic projects}
+% % \cvsubsection{Postgraduate Training}
+% \begin{cvtable}[1.5]
+% %	\cvitem{08/2019}{Mathematical Programming for Space Debris orbit determination}{\normalsize \textit{}}
+% %	{\\Optimization of the observation planning for a ground station with the aim of minimizing the error on debris orbit determination.}	
+% 	\cvitem{03/2019 - 07/2019}{Lunar tech kit, a preliminary design (Team)}{\normalsize \textit{}}
+% 	{Played the role of Mission Analysis Engineer in a team project for the phase A, preliminary mission design of a lunar science tech kit mission to map lunar resources and distribution of lava tubes.}
+% 	\cvitem{10/2018 - 01/2019}{\textbf{Spacecraft Attitude Dynamics}}{\normalsize \textit{}}
+% 		{Design and simulation of the ADCS for a ComSat in GEO.}
+% 	\cvitem{12/2018 - 01/2019}{Model based design on GOCE (Team)}{\normalsize \textit{}}
+% 	{Modeling and Simulation of the Drag Free and Attitude Control System for GOCE Spacecraft. Multi-objective optimization of the control parameters and out of nominal robustness verification.}
+% % 	\cvitem{10/2018}{ReDSHIFT Space Debris Day}{\normalsize \textit{}}
+% % 	{One day workshop on the European project ReDSHIFT on de-orbiting and disposal of space debris.}	
+% 	\cvitem{10/2017 - 01/2018}{Mission to Uranus (Team)}{\normalsize \textit{}}
+% 	{Design of optimal interplanetary trajectory from Earth to Uranus with gravity assist on Mars. Robustness verification against an high fidelity 10 bodies simulation. }
+% % 	Mixed grid - heuristic optimization of an interplanetary trajectory from Earth to Uranus performing a FlyBy around Mars. Comparison of the patched conics approach against a 10 body simulation of the Solar System.
+% % 	}
+% 	\cvitem{10/2017 - 01/2018}{Perturbed Earth environment (Team)}{\normalsize \textit{}}
+% 	{Long term orbit propagation in MEO under the effects of orbital perturbations.}	
+% % 	\cvitem{09/2016 - 01/2017}{A Space Propulsion trade off}{\normalsize \textit{}}
+% % 	{Preliminary analysis and design of a suitable propulsion system to perform an Hohmann transfer in Earth orbit, comparison between storable liquid and electric solutions.}	
+% \end{cvtable}
+
+% \vspace{1cm}
+
+
+% All the certificates and documentation related to language knowledge and experiences abroad can be made available on request.
+
+%Autorizzo al trattamento dati ai sensi del GDPR 2016/679 del 27 aprile 2016 (Regolamento Europeo
+%relativo alla protezione delle persone fisiche per quanto riguarda il trattamento dei dati personali).
+%Autorizzo la pubblicazione del Curriculum Vitae sul sito istituzionale del Politecnico di Milano (sez.
+%Amministrazione Trasparente) in ottemperanza al D. Lgs n. 33 del 14 marzo 2013 (e s.m.i.).
+
+% \newpage
+% \makebacksidebar
+
+
+
+% \cvsubsection{Study}
+% \begin{cvtable}[1.5]
+% 	\cvitem{2006 -- 2008}{Master Studies Panda Science}{Panda Academy}
+% 		{Focus: Advanced rice hat studies and nouveau rain-reflecting cover
+% 		materials.}
+% 	\cvitem{}{Master Theses ($\varnothing\, 1,0$)}{CRSW Institute}
+% 		{Impact of solar radiation onto rice hat cover materials with special
+% 		attention to water resistance.}
+% 	\cvitem{2003 -- 2006}{Bachelor Studies PandaScience}{Panda Academy}
+% 		{Focus: Bamboo stick morphology and its usage in different instruments.}
+% 	\cvitem{}{Bachelor Theses ($\varnothing\, 1,0$)}{BambooStick  Institute}
+% 		{The bamboo stick: An underestimated instrument in orchestras?}
+% \end{cvtable}
+
+% \cvsection{Publications}
+% \begin{cvtable}
+% 	\cvpubitem{Back to Cosmos}{Sanchez et Al.}
+% 		{Progress in Physics}{2019}
+%     \cvpubitem{Science unification and Permanent Cosmology}{Sanchez et Al.}
+%         {Journal de Mathematiques pures et appliquees}{2020}
+% \end{cvtable}
+
+% \cvsection{Awards}
+% \begin{cvtable}
+% 	\cvitem{2010 -- now}{Tiger of the Year}{OBS}{}
+% 	\cvitem{2001 -- now}{Voila Engine Search}{H3D}{}
+% \end{cvtable}
+
+
+% \cvsection{Extra-Curricular Activities}
+% \begin{cvtable}
+% 	\cvitemshort{Sports}{Sailing, Golf}
+% 	\cvitemshort{Music}{Drums}
+% 	\cvitemshort{Education}{Machine Learning, CNN, AI}
+% \end{cvtable}
+
+
+% \newpage
+% \makebacksidebar
+% % \newgeometry{
+% % 	top=\topbottommargin,
+% % 	bottom=\topbottommargin,
+% % 	right=\leftrightmargin,
+% % 	left=\leftrightmargin
+% % }
+
+% \cvsection{section}
+% \cvsubsection{Subsection}
+% \begin{cvtable}
+% 	\cvitem{<dates>}{<cv-item title>}{<location>}{<optional: description>}
+% \end{cvtable}
+
+% \cvsection{cvitem}
+% \cvsubsection{Multi-line with longer description}
+% \begin{cvtable}
+% 	\cvitem{date}{Description}{location}{Some longer and more detailed
+% 		description, that takes two lines of space instead of only one.}
+% 	\cvitem{date}{Description}{location}{Some longer and more detailed
+% 		description, that takes two lines of space instead of only one.}
+% 	\cvitem{date}{Description}{location}{Some longer and more detailed
+% 		description, that takes two lines of space instead of only one.}
+% \end{cvtable}
+
+% \cvsubsection{One-line without description}
+% \begin{cvtable}
+% 	\cvitem{Award}{One-line description}{Sponsor}{}
+% 	\cvitem{Award}{One-line description}{Sponsor}{}
+% 	\cvitem{Award}{One-line description}{Sponsor}{}
+% \end{cvtable}
+
+% \cvsection{cvitemshort}
+% \cvsubsection{One-line}
+% \begin{cvtable}
+% 	\cvitemshort{Key}{Some further description}
+% 	\cvitemshort{Key}{Some further description}
+% 	\cvitemshort{Key}{Some further description}
+% \end{cvtable}
+
+% \cvsubsection{Multi-line with longer description}
+% \begin{cvtable}
+% 	\cvitemshort{Key}{Some further description. Can fill even more than
+% 		only one single line while still keeping the correct indendation level.}
+% 	\cvitemshort{Key}{Some further description. Can fill even more than
+% 		only one single line while still keeping the correct indendation level.}
+% 	\cvitemshort{Key}{Some further description. Can fill even more than
+% 		only one single line while still keeping the correct indendation level.}
+% \end{cvtable}
+
+% \cvsignature 
+%  \watermark.
+%\begin{Form}
+%  \digsigfield{5cm}{3cm}{\cvsignature}
+%\end{Form}
+
+
+
+\end{document}

@@ -374,32 +374,6 @@
       .site-footer { padding: 24px 24px 32px 24px; }
     }
 
-    /* Section banner separators */
-    .section-banner {
-      width: 100%;
-      height: 100vh;
-      min-height: 500px;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      position: relative;
-    }
-    .section-banner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(250,250,250,1) 0%, rgba(250,250,250,0) 8%, rgba(250,250,250,0) 92%, rgba(250,250,250,1) 100%);
-      pointer-events: none;
-    }
-    .section-banner.banner-pub { background-image: url('MilanoDuomo.png'); }
-    .section-banner.banner-research {
-      background-image: url('background-research.jpg');
-    }
-    .section-banner.banner-missions { background-image: url('milky_way.avif'); }
-    @media (max-width: 900px) {
-      .section-banner { height: 38vh; min-height: 240px; }
-    }
-
     @media (max-width: 900px) {
       .hero-inner { flex-direction: column-reverse; padding: 0 24px; text-align: center; gap: 20px; }
       .hero-pic { width: 130px; height: 130px; }
@@ -523,7 +497,6 @@
         </div>
       </div>
   </section>
-  <div class="section-banner banner-pub" aria-hidden="true"></div>
   <section id="publications">
       <h2>Selected Publications <span style="font-size:1.05rem;font-weight:normal;color:#555;">— <a href="https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it" target="_blank" style="color:#1a9e96;font-weight:500;">Google Scholar</a></span></h2>
       <div class="section-rule"></div>
@@ -693,7 +666,6 @@
         document.addEventListener('DOMContentLoaded', renderPubs);
       </script>
   </section>
-  <div class="section-banner banner-research" aria-hidden="true"></div>
   <section id="research">
       <h2>Research Projects</h2>
       <div class="section-rule"></div>
@@ -733,7 +705,6 @@
         </div>
       </div>
   </section>
-  <div class="section-banner banner-missions" aria-hidden="true"></div>
   <section id="missions">
       <h2>Missions</h2>
       <div class="section-rule"></div>
@@ -797,7 +768,7 @@
     </div>
   </section>
   <footer class="site-footer">
-    <p><strong>Image credits.</strong> Hero (Lecce, Piazza Duomo): © Shutterstock, via <a href="https://www.latitudeslife.com/2021/09/un-giorno-a-lecce-attraverso-la-sua-storia/" target="_blank" rel="noopener">latitudeslife.com</a>. Publications banner (Milan): <a href="https://www.deda.com/insights/customer-success-stories/metropolitan-city-of-milan" target="_blank" rel="noopener">Metropolitan City of Milan / Deda</a>. Research banner: Stanford University. Missions banner (Milky Way): © Babak Tafreshi / Nat Geo Image Collection, via <a href="https://www.nationalgeographic.com/science/article/milky-way-galaxy-facts-black-hole-stars-space-science" target="_blank" rel="noopener">National Geographic</a>. STARI: adapted from <a href="https://starimission.space" target="_blank" rel="noopener">starimission.space</a>. LUMIO: Politecnico di Milano / LUMIO mission team, via <a href="https://www.aero.polimi.it/it/magazine/la-missione-lumio-approvata-dall-agenzia-spaziale-europea" target="_blank" rel="noopener">aero.polimi.it</a>. Milani: © Terran Orbital Corporation, via <a href="https://tyvak.eu/tyvak-international-completes-test-readiness-review-of-the-milani-nano-satellite/" target="_blank" rel="noopener">tyvak.eu</a>.</p>
+    <p><strong>Image credits.</strong> Hero (Lecce, Piazza Duomo): © Shutterstock, via <a href="https://www.latitudeslife.com/2021/09/un-giorno-a-lecce-attraverso-la-sua-storia/" target="_blank" rel="noopener">latitudeslife.com</a>. STARI: adapted from <a href="https://starimission.space" target="_blank" rel="noopener">starimission.space</a>. LUMIO: Politecnico di Milano / LUMIO mission team, via <a href="https://www.aero.polimi.it/it/magazine/la-missione-lumio-approvata-dall-agenzia-spaziale-europea" target="_blank" rel="noopener">aero.polimi.it</a>. Milani: © Terran Orbital Corporation, via <a href="https://tyvak.eu/tyvak-international-completes-test-readiness-review-of-the-milani-nano-satellite/" target="_blank" rel="noopener">tyvak.eu</a>.</p>
     <p style="margin-top:8px;">© Antonio Rizza.</p>
   </footer>
   <script>
