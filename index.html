@@ -5,81 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antonio Rizza</title>
   <style>
+    html { scroll-behavior: smooth; }
     body {
-      background: #111 url('background-about.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      background: #fafafa;
+      color: #1a1a1a;
       margin: 0;
       font-family: system-ui, sans-serif;
-      transition: background-image 0.5s;
+      line-height: 1.6;
     }
     .navbar {
       width: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
       gap: 32px;
       padding: 0 0 12px 0;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #e8e8e8;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
     .nav-link {
-      color: #fff;
+      color: #333;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       padding: 16px 0 8px 0;
       border-bottom: 2px solid transparent;
       transition: border 0.2s, color 0.2s;
     }
     .nav-link.active, .nav-link:hover {
-      color: #4fd1c5;
-      border-bottom: 2px solid #4fd1c5;
+      color: #1a9e96;
+      border-bottom: 2px solid #1a9e96;
     }
-    .container {
-      background: rgba(0,0,0,0.7);
-      color: inherit;
-      padding: 40px 56px;
-      border-radius: 12px;
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 50vh;
+      min-height: 380px;
+      background: #111 url('background-about.jpg') no-repeat center center;
+      background-size: cover;
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: 64px auto 32px auto;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.4);
-    }
-    .bio {
-      flex: 1;
-      margin-right: 48px;
-    }
-    .bio h2 {
+      align-items: center;
+      justify-content: center;
       color: #fff;
-      margin-top: 0;
+      overflow: hidden;
     }
-    .profile-pic {
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 70%, rgba(250,250,250,1) 100%);
+      pointer-events: none;
     }
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-        padding: 16px;
-      }
-      .bio {
-        margin-right: 0;
-        margin-bottom: 24px;
-      }
-      .container > div:last-child {
-        margin-left: 0;
-      }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 56px;
+      box-sizing: border-box;
     }
-    .tab-content { display: none; }
-    .tab-content.active { display: flex; }
+    .hero-text { flex: 1; }
+    .hero-name {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .hero-title {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #d8f0ed;
+      margin: 0;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .hero-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.85);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    }
+
+    /* Sections */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 64px 56px;
+      scroll-margin-top: 70px;
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #1a1a1a;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+    section .section-rule {
+      width: 60px;
+      height: 3px;
+      background: #1a9e96;
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+    .bio-text {
+      font-size: 1.05rem;
+      color: #2c2c2c;
+      max-width: 820px;
+    }
+    .bio-text a { color: #1a9e96; text-decoration: none; font-weight: 500; }
+    .bio-text a:hover { text-decoration: underline; }
+
+    /* Timeline - light theme */
     .cv-timeline {
       position: relative;
-      margin: 2.5em 0 2em 120px;
+      margin: 1.5em 0 1em 0;
       padding-left: 40px;
     }
     .cv-timeline-line {
@@ -87,93 +134,86 @@
       left: 18px;
       top: 0;
       bottom: 0;
-      width: 4px;
-      background: linear-gradient(to bottom, #e40b0b 0%, #e40b0b 100%);
+      width: 3px;
+      background: #1a9e96;
       border-radius: 2px;
       z-index: 0;
     }
     .cv-timeline-entry {
       position: relative;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       z-index: 1;
     }
     .cv-timeline-dot {
-      width: 20px;
-      height: 20px;
-      background: #4fd1c5;
+      width: 16px;
+      height: 16px;
+      background: #1a9e96;
       border: 3px solid #fff;
       border-radius: 50%;
       position: absolute;
-      left: -32px;
-      top: 50%;
-      transform: translateY(-50%);
+      left: -30px;
+      top: 16px;
       z-index: 2;
-      box-shadow: 0 2px 8px #222;
+      box-shadow: 0 0 0 1px #1a9e96;
     }
     .cv-timeline-date {
-      min-width: 120px;
-      font-weight: bold;
-      color: #4fd1c5;
+      min-width: 140px;
+      font-weight: 600;
+      color: #1a9e96;
       margin-right: 18px;
-      font-size: 1.05em;
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-      height: 100%;
+      font-size: 0.95em;
+      padding-top: 12px;
     }
     .cv-timeline-content {
-      background: rgba(30,40,50,0.85);
+      background: #fff;
+      border: 1px solid #e8e8e8;
       border-radius: 8px;
-      padding: 12px 18px 10px 18px;
-      box-shadow: 0 2px 8px #1118;
-      color: #fff;
+      padding: 14px 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      color: #1a1a1a;
       flex: 1;
     }
     .cv-timeline-place {
       display: block;
-      font-size: 0.98em;
-      color: #b5e6e0;
+      font-size: 0.95em;
+      color: #1a9e96;
       margin-bottom: 2px;
       margin-top: 2px;
     }
     .cv-timeline-desc {
-      font-size: 0.97em;
-      color: #ccc;
+      font-size: 0.95em;
+      color: #555;
       margin-top: 4px;
     }
+
+    /* Mission sections */
     .mission-section {
       display: flex;
       align-items: center;
       gap: 48px;
       padding: 48px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid #ececec;
     }
-    .mission-section:last-child {
-      border-bottom: none;
-    }
-    .mission-section.reverse {
-      flex-direction: row-reverse;
-    }
-    .mission-text {
-      flex: 1;
-    }
+    .mission-section:last-child { border-bottom: none; }
+    .mission-section.reverse { flex-direction: row-reverse; }
+    .mission-text { flex: 1; }
     .mission-name {
       font-size: 2.2rem;
       font-weight: bold;
-      color: #fff;
+      color: #1a1a1a;
       margin: 0 0 4px 0;
       letter-spacing: -0.5px;
     }
     .mission-role {
-      color: #4fd1c5;
+      color: #1a9e96;
       font-size: 1rem;
       margin-bottom: 18px;
       font-weight: 500;
     }
     .mission-desc {
-      color: #d0d8e0;
+      color: #444;
       font-size: 1.02rem;
       line-height: 1.6;
     }
@@ -181,63 +221,158 @@
       flex: 1;
       aspect-ratio: 4 / 3;
       background: #000;
-      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     }
     .mission-image img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+
+    /* About row */
+    .about-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+    }
+
+    /* Contact cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 1.5em;
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 28px 24px;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: #1a9e96;
+    }
+    .contact-card .contact-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(26,158,150,0.1);
+      color: #1a9e96;
+      border-radius: 10px;
+    }
+    .contact-card .contact-label {
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-card .contact-value {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #1a1a1a;
+      word-break: break-all;
+    }
+    @media (max-width: 700px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Footer */
+    .site-footer {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 56px 40px 56px;
+      border-top: 1px solid #ececec;
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 1.55;
+    }
+    .site-footer p { margin: 0 0 4px 0; }
+    .site-footer a { color: #888; text-decoration: underline; text-decoration-color: #ddd; }
+    .site-footer a:hover { color: #1a9e96; text-decoration-color: #1a9e96; }
     @media (max-width: 900px) {
-      .mission-section, .mission-section.reverse {
-        flex-direction: column;
-        gap: 24px;
-        padding: 32px 0;
-      }
+      .site-footer { padding: 24px 24px 32px 24px; }
+    }
+
+    /* Section banner separators */
+    .section-banner {
+      width: 100%;
+      height: 100vh;
+      min-height: 500px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    .section-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(250,250,250,1) 0%, rgba(250,250,250,0) 8%, rgba(250,250,250,0) 92%, rgba(250,250,250,1) 100%);
+      pointer-events: none;
+    }
+    .section-banner.banner-pub { background-image: url('MilanoDuomo.png'); }
+    .section-banner.banner-research {
+      background-image: url('background-research.jpg');
+    }
+    .section-banner.banner-missions { background-image: url('milky_way.avif'); }
+    @media (max-width: 900px) {
+      .section-banner { height: 38vh; min-height: 240px; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { flex-direction: column-reverse; padding: 0 24px; text-align: center; gap: 20px; }
+      .hero-pic { width: 130px; height: 130px; }
+      .hero-name { font-size: 2.2rem; }
+      section { padding: 48px 24px; }
+      .navbar { gap: 18px; font-size: 0.9rem; }
+      .about-row { flex-direction: column; gap: 24px; }
+      .mission-section, .mission-section.reverse { flex-direction: column; gap: 24px; padding: 32px 0; }
+      .cv-timeline-entry { flex-direction: column; }
+      .cv-timeline-date { min-width: 0; margin-bottom: 6px; padding-top: 0; }
     }
   </style>
-  <script>
-    function showTab(tab) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.getElementById(tab).classList.add('active');
-      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-      document.getElementById('nav-' + tab).classList.add('active');
-      // Change background depending on tab
-      let bg = 'background-about.jpg';
-      if(tab === 'Publications') bg = 'background-publications.jpg';
-      if(tab === 'research') bg = 'background-research.jpg';
-      if(tab === 'missions') bg = 'milky_way.avif';
-      document.body.style.backgroundImage = `url('${bg}')`;
-    }
-    window.onload = function() {
-      showTab('about');
-    };
-  </script>
 </head>
 <body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-name">Antonio Rizza</h1>
+        <p class="hero-title">Postdoctoral Researcher · Stanford University · SLAB</p>
+      </div>
+      <img src="antonio_rizza_cut.jpg" alt="Antonio Rizza" class="hero-pic" />
+    </div>
+  </header>
   <nav class="navbar">
-    <a href="#" class="nav-link active" id="nav-about" onclick="showTab('about');return false;">About</a>
-    <a href="#" class="nav-link" id="nav-Publications" onclick="showTab('Publications');return false;">Publications</a>
-    <a href="#" class="nav-link" id="nav-research" onclick="showTab('research');return false;">Research Projects</a>
-    <a href="#" class="nav-link" id="nav-missions" onclick="showTab('missions');return false;">Missions</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#publications" class="nav-link">Publications</a>
+    <a href="#research" class="nav-link">Research Projects</a>
+    <a href="#missions" class="nav-link">Missions</a>
+    <a href="#contact" class="nav-link">Contact</a>
   </nav>
-  <div class="container tab-content active" id="about" style="flex-direction:column;">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;width:100%;">
-    <div class="bio">
-      <h2>Antonio Rizza</h2>
-      <p>Spacecraft Guidance Navigation and Control (GNC) Engineer. Expert in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Seven years of experience in research on autonomous space robotics probes, with leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the US. Currently focused at Stanford on enabling and flight testing ground breaking GNC technologies for distributed space systems that can be pivotal in the current landscape of Space exploration and exploitation. GNC Engineer for the <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">Milani</a>, <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">LUMIO</a>, and <a href="#" onclick="showTab('missions');return false;" style="color:#4fd1c5;text-decoration:none;">STARI</a> missions.</p>
-    </div>
-    <div>
-      <img src="antonio_rizza_cut.jpg" alt="Profile Picture" width="200" height="200" class="profile-pic" />
-    </div>
-    </div>
-    <div class="bio" style="width:100%;margin-right:0;">
-      <h2 style="margin-top:1.5em;">Research Experience</h2>
+  <section id="about">
+    <h2>About</h2>
+    <div class="section-rule"></div>
+    <p class="bio-text">Spacecraft Guidance Navigation and Control (GNC) Engineer. Expert in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Seven years of experience in research on autonomous space robotics probes, with leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the US. Currently focused at Stanford on enabling and flight testing ground breaking GNC technologies for distributed space systems that can be pivotal in the current landscape of Space exploration and exploitation. GNC Engineer for the <a href="#missions">Milani</a>, <a href="#missions">LUMIO</a>, and <a href="#missions">STARI</a> missions.</p>
+
+    <h2 style="margin-top:3em;">Research Experience</h2>
+    <div class="section-rule"></div>
       <div class="cv-timeline">
         <div class="cv-timeline-line"></div>
         <div class="cv-timeline-entry">
@@ -297,7 +432,8 @@
           </div>
         </div>
       </div>
-      <h2 style="margin-top:2em;">Education</h2>
+      <h2 style="margin-top:3em;">Education</h2>
+      <div class="section-rule"></div>
       <div class="cv-timeline">
         <div class="cv-timeline-line"></div>
         <div class="cv-timeline-entry">
@@ -309,7 +445,7 @@
         </div>
         <div class="cv-timeline-entry">
           <div class="cv-timeline-dot"></div>
-          <div class="cv-timeline-date">05/2019 - 05/2019</div>
+          <div class="cv-timeline-date">05/2019</div>
           <div class="cv-timeline-content">
             <b>ESA Academy Space Debris Training Course</b> <span class="cv-timeline-place">ESEC GALAXIA, Belgium</span>
           </div>
@@ -322,11 +458,11 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container tab-content" id="Publications" style="background:rgba(255,255,255,0.95);">
-    <div class="bio" style="width:100%;max-width:100%;">
-      <h2 style="color:#111;">Publications <span style="font-size:0.75rem;font-weight:normal;color:#555;">— <a href="https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it" target="_blank" style="color:#1a9e96;">Google Scholar</a></span></h2>
+  </section>
+  <div class="section-banner banner-pub" aria-hidden="true"></div>
+  <section id="publications">
+      <h2>Publications <span style="font-size:0.75rem;font-weight:normal;color:#555;">— <a href="https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it" target="_blank" style="color:#1a9e96;">Google Scholar</a></span></h2>
+      <div class="section-rule"></div>
       <div style="margin-bottom:1.5em;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
         <span style="color:#555;font-size:0.9em;">Sort by:</span>
         <button onclick="sortPubs('year')" id="sort-year" style="background:rgba(26,158,150,0.12);border:1px solid #1a9e96;color:#1a9e96;padding:4px 14px;border-radius:20px;cursor:pointer;font-size:0.9em;">Year</button>
@@ -428,11 +564,11 @@
 
         document.addEventListener('DOMContentLoaded', renderPubs);
       </script>
-    </div>
-  </div>
-  <div class="container tab-content" id="research">
-    <div class="bio">
+  </section>
+  <div class="section-banner banner-research" aria-hidden="true"></div>
+  <section id="research">
       <h2>Research Projects</h2>
+      <div class="section-rule"></div>
       <div class="cv-timeline">
         <div class="cv-timeline-line"></div>
         <div class="cv-timeline-entry">
@@ -468,11 +604,11 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container tab-content" id="missions" style="flex-direction:column;">
-    <div style="width:100%;">
-      <h2 style="color:#fff;margin-top:0;">Missions</h2>
+  </section>
+  <div class="section-banner banner-missions" aria-hidden="true"></div>
+  <section id="missions">
+      <h2>Missions</h2>
+      <div class="section-rule"></div>
       <div class="mission-section">
         <div class="mission-text">
           <div class="mission-name">STARI</div>
@@ -503,7 +639,52 @@
           <img src="Milani.jpg" alt="Milani mission">
         </div>
       </div>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="section-rule"></div>
+    <p class="bio-text" style="margin-bottom:1.5em;">Reach out by email, connect on LinkedIn, or download my CV.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:arizza@stanford.edu">
+        <div class="contact-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        </div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">arizza@stanford.edu</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/antoniorizza95" target="_blank" rel="noopener">
+        <div class="contact-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">antoniorizza95</div>
+      </a>
+      <a class="contact-card" href="CV.pdf" download>
+        <div class="contact-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="contact-label">Curriculum Vitae</div>
+        <div class="contact-value">Download CV (PDF)</div>
+      </a>
     </div>
-  </div>
+  </section>
+  <footer class="site-footer">
+    <p><strong>Image credits.</strong> Hero (Lecce, Piazza Duomo): © Shutterstock, via <a href="https://www.latitudeslife.com/2021/09/un-giorno-a-lecce-attraverso-la-sua-storia/" target="_blank" rel="noopener">latitudeslife.com</a>. Publications banner (Milan): <a href="https://www.deda.com/insights/customer-success-stories/metropolitan-city-of-milan" target="_blank" rel="noopener">Metropolitan City of Milan / Deda</a>. Research banner: Stanford University. Missions banner (Milky Way): © Babak Tafreshi / Nat Geo Image Collection, via <a href="https://www.nationalgeographic.com/science/article/milky-way-galaxy-facts-black-hole-stars-space-science" target="_blank" rel="noopener">National Geographic</a>. STARI: adapted from <a href="https://starimission.space" target="_blank" rel="noopener">starimission.space</a>. LUMIO: Politecnico di Milano / LUMIO mission team, via <a href="https://www.aero.polimi.it/it/magazine/la-missione-lumio-approvata-dall-agenzia-spaziale-europea" target="_blank" rel="noopener">aero.polimi.it</a>. Milani: © Terran Orbital Corporation, via <a href="https://tyvak.eu/tyvak-international-completes-test-readiness-review-of-the-milani-nano-satellite/" target="_blank" rel="noopener">tyvak.eu</a>.</p>
+    <p style="margin-top:8px;">© Antonio Rizza. Built with Claude Code.</p>
+  </footer>
+  <script>
+    // Highlight active nav link based on scroll position
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
 </body>
 </html>
