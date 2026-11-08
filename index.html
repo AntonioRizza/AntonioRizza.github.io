@@ -99,18 +99,116 @@
       border-bottom: 2px solid #1a9e96;
     }
 
+    /* Expertise 3D menu */
+    .nav-link.nav-button { background: none; border-top: 0; border-left: 0; border-right: 0; font: inherit; font-size: 1.05rem; cursor: pointer; }
+    @media (max-width: 900px) { .nav-link.nav-button { font-size: 0.9rem; } }
+    .xp-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(250,250,250,0.97);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: #1a1a1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: env(safe-area-inset-top, 0px) 16px env(safe-area-inset-bottom, 0px);
+      opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s;
+      user-select: none; -webkit-user-select: none; touch-action: none;
+    }
+    .xp-overlay.open { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+    .xp-eyebrow { font-size: .78rem; letter-spacing: .28em; text-transform: uppercase; color: #1a9e96; margin: 0 0 1.2rem; font-weight: 600; }
+    .xp-close {
+      position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: 20px;
+      width: 44px; height: 44px; border-radius: 50%; border: 1px solid #d6d6d6;
+      background: #fff; color: #333; font-size: 1.4rem; line-height: 1; cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+    .xp-close:hover, .xp-close:focus-visible { color: #1a9e96; border-color: #1a9e96; outline: none; }
+    .xp-stage {
+      width: 100%; max-width: 1100px; height: min(52vh, 440px);
+      perspective: 1100px; perspective-origin: 50% 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: grab; position: relative;
+    }
+    .xp-stage.dragging { cursor: grabbing; }
+    .xp-bg {
+      position: absolute; top: 0; left: 0; right: 0; height: var(--xp-img-h); z-index: 0; pointer-events: none;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity .6s ease;
+    }
+    .xp-bg.active { opacity: var(--xp-bg-opacity, 0.45); }
+    /* replica of slide 3 (16:9), scaled to fit entirely inside the window */
+    .xp-bg-slide .xp-slide {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: min(100vw, calc(var(--xp-img-h) * 16 / 9)); aspect-ratio: 16 / 9; overflow: hidden; background: #fff;
+    }
+    .xp-slide > * { position: absolute; display: block; object-fit: fill; }
+    /* rows of tiles that together cover the whole window; tile width follows each image's aspect ratio */
+    .xp-bg-rows { display: flex; flex-direction: column; gap: 8px; background: #fff; }
+    .xp-bg-rows .xp-row { display: flex; gap: 8px; min-height: 0; }
+    .xp-bg-rows img { display: block; min-width: 0; height: 100%; object-fit: cover; background: #fff; }
+    .xp-overlay > :not(.xp-bg) { position: relative; z-index: 1; }
+    .xp-overlay > .xp-close, .xp-overlay > .xp-hint { position: absolute; }
+    /* layout: images + spinning menu in the top part, description in the bottom strip */
+    .xp-overlay { --xp-img-h: 75vh; --xp-img-h: 75dvh; }
+    .xp-overlay > .xp-eyebrow { position: absolute; top: calc(22px + env(safe-area-inset-top, 0px)); left: 0; right: 0; text-align: center; margin: 0; }
+    .xp-overlay > .xp-stage {
+      position: absolute; top: 0; left: 0; right: 0; margin: 0 auto;
+      height: var(--xp-img-h); max-width: 1100px;
+    }
+    .xp-overlay > .xp-desc {
+      position: absolute; top: var(--xp-img-h); bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+      left: 16px; right: 16px; margin: 0 auto; max-width: 680px; min-height: 0;
+      display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    }
+    .xp-overlay > .xp-desc p { font-size: .95rem; line-height: 1.5; }
+    .xp-ring { position: relative; width: 100%; height: 0; transform-style: preserve-3d; }
+    .xp-drum { position: absolute; inset: 0; transform-style: preserve-3d; }
+    .xp-item {
+      position: absolute; left: 0; right: 0; top: 0;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-size: clamp(1.05rem, 3vw, 2.2rem); line-height: 1.2; font-weight: 600; letter-spacing: -0.01em;
+      color: #1a1a1a; background: none; border: 0; padding: 0 12px;
+      font-family: inherit; cursor: pointer; backface-visibility: hidden;
+      margin: 0 auto; max-width: 100%; text-wrap: balance;
+      transition: color .2s;
+    }
+    .xp-item.front { color: #1a9e96; }
+    /* frosted label backgrounds so text stays readable over the images */
+    .xp-pill {
+      display: inline-block; max-width: 100%;
+      padding: .12em .65em .16em; border-radius: .55em;
+      color: #fff; background: rgba(14, 92, 88, .82);
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .xp-item.front .xp-pill { background: rgba(26, 158, 150, .94); box-shadow: 0 4px 20px rgba(0,0,0,.22); }
+    .xp-overlay > .xp-eyebrow { width: max-content; margin: 0 auto !important; padding: .45em .9em .45em 1.18em; border-radius: 999px;
+      color: #fff; background: rgba(14, 92, 88, .85); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 2px 12px rgba(0,0,0,.15); }
+    .xp-item:focus-visible { outline: 2px solid #1a9e96; outline-offset: -4px; }
+    .xp-desc { max-width: 640px; text-align: center; min-height: 7.5em; margin-top: 1.2rem; }
+    .xp-desc h3 { margin: 0 0 .5rem; font-size: 1.1rem; font-weight: 600; color: #1a1a1a; }
+    .xp-desc p { margin: 0; color: #555; font-size: .98rem; line-height: 1.6; }
+    .xp-hint { position: absolute; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); font-size: .78rem; letter-spacing: .04em; color: #888; }
+    body.xp-lock { overflow: hidden; }
+
     /* Hero */
     .hero {
       position: relative;
       height: 50vh;
       min-height: 380px;
-      background: #111 url('background-about.jpg') no-repeat center center;
-      background-size: cover;
+      background: #111;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       overflow: hidden;
+    }
+    /* Lecce photo on its own layer so its transparency can be tuned */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('background-about.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.6;
+      pointer-events: none;
     }
     .hero::after {
       content: '';
@@ -143,6 +241,15 @@
       font-weight: 400;
       color: #d8f0ed;
       margin: 0;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 500;
+      font-style: italic;
+      color: #fff;
+      margin: 6px 0 0 0;
+      letter-spacing: 0.01em;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
     .hero-pic {
@@ -452,21 +559,36 @@
       <div class="hero-text">
         <h1 class="hero-name">Antonio Rizza</h1>
         <p class="hero-title">Guidance Navigation and Control Engineer · Cosmic Frontier Labs</p>
+        <p class="hero-tagline">Enabling Autonomy for Space Science</p>
       </div>
       <img src="antonio_rizza_cut.jpg" alt="Antonio Rizza" class="hero-pic" />
     </div>
   </header>
   <nav class="navbar">
     <a href="#about" class="nav-link">About</a>
+    <button type="button" class="nav-link nav-button" id="xp-open" aria-haspopup="dialog" aria-controls="xp-overlay">Expertise</button>
     <a href="#publications" class="nav-link">Publications</a>
     <a href="#research" class="nav-link">Research Projects</a>
     <a href="#missions" class="nav-link">Missions</a>
     <a href="#contact" class="nav-link">Contact</a>
   </nav>
+
+  <div class="xp-overlay" id="xp-overlay" role="dialog" aria-modal="true" aria-label="Expertise" aria-hidden="true">
+    <button type="button" class="xp-close" id="xp-close" aria-label="Close expertise menu">&times;</button>
+    <p class="xp-eyebrow">Expertise</p>
+    <div class="xp-stage" id="xp-stage">
+      <div class="xp-ring"><div class="xp-drum" id="xp-drum"></div></div>
+    </div>
+    <div class="xp-desc" aria-live="polite">
+      <h3 id="xp-desc-title"></h3>
+      <p id="xp-desc-text"></p>
+    </div>
+    <div class="xp-hint">Scroll or drag to spin · ↑ ↓ keys · Esc to close</div>
+  </div>
   <section id="about">
     <h2>About</h2>
     <div class="section-rule"></div>
-    <p class="bio-text">I am a Spacecraft Guidance Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Leveraging seven years of research on autonomous space robotics probes, I had leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the United States. At Stanford, I am currently focused on enabling and flight testing ground breaking GNC technologies for the next generation of distributed space systems. I have been GNC Engineer for the <a href="#missions">Milani</a>, <a href="#missions">LUMIO</a>, and <a href="#missions">STARI</a> missions.</p>
+    <p class="bio-text">I am a Spacecraft Guidance Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Leveraging seven years of research on autonomous space robotics probes, I had leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the United States. At Stanford, my research focused on enabling and flight testing ground breaking GNC technologies for the next generation of distributed space systems. I have been GNC Engineer for the <a href="#missions">Milani</a>, <a href="#missions">LUMIO</a>, and <a href="#missions">STARI</a> missions. At Cosmic Frontier Labs, I am now helping to design and build a new generation of standardize space telescopes to accelerate discovery and exploration of the Universe.</p>
 
     <h2 style="margin-top:3em;">Research Experience</h2>
     <div class="section-rule"></div>
@@ -842,6 +964,234 @@
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     sections.forEach(s => observer.observe(s));
+  </script>
+  <script>
+    // Expertise 3D drum menu
+    (function () {
+      const EXPERTISE = [
+        { title: "Modeling and Simulation for Training Validation and Testing",
+          bg: "modeling_collage.jpg",
+          text: "Safe and reliable deployment of autonomy stacks in orbit requires extensive training validation and testing in a variety of environments to bridge the sim to real gap. These prototyping frameworks span from high fidelity digital twinning of the system to hardware verification in both static and dynamic test benches." },
+        { title: "Autonomous Guidance Navigation and Control",
+          // images from slides 5 and 6 of Facilities.pptx; ar = width / height
+          bgRows: [
+            [ { img: "mission_stari.jpg", ar: 1.805 }, { img: "mission_lumio.jpg", ar: 1.429 } ],
+            [ { img: "mission_milani.jpg", ar: 1.0, pos: "center 35%" }, { img: "mission_asteroid.png", ar: 0.8 }, { img: "mission_telescope.jpg", ar: 1.169 } ]
+          ],
+          text: "Enabling the new generation of robotic capabilities in Space while guaranteeing safety and reliability requires high-level goal-oriented decision making backed up by a framework of well understood optical control, estimation and perception strategies." },
+        { title: "Optimization for Scalability and Distribution",
+          // positions copied from slide 3 of Facilities.pptx (% of the 16:9 slide)
+          bgSlide: [
+            { video: "optimization_video.mp4", poster: "optimization_video_poster.jpg", l: 2.145, t: 0, w: 39.353, h: 60.455 },
+            { img: "factor_graph.png",         l: 53.519, t: 2.484,  w: 37.214, h: 45.626 },
+            { img: "formation_trajectory.png", l: 6.506,  t: 60.455, w: 30.444, h: 39.545 },
+            { img: "optimization_cartoon.jpg", l: 58.503, t: 51.890, w: 26.708, h: 47.481 }
+          ],
+          text: "Scalability of autonomy, decision making and safety to large infrastructures requires distributed optimization and enforcement of consensus over large networks operating under dynamics, navigation and control uncertainties." }
+      ];
+      const N = EXPERTISE.length;             // one label per option, equally spaced
+      const STEP = 360 / N;
+
+      const overlay = document.getElementById('xp-overlay');
+      const stage = document.getElementById('xp-stage');
+      const drum = document.getElementById('xp-drum');
+      const openBtn = document.getElementById('xp-open');
+      const closeBtn = document.getElementById('xp-close');
+      const dTitle = document.getElementById('xp-desc-title');
+      const dText = document.getElementById('xp-desc-text');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const bgs = EXPERTISE.map(e => {
+        if (!e.bg && !e.bgSlide && !e.bgRows) return null;
+        const d = document.createElement('div');
+        d.className = 'xp-bg';
+        if (e.bg) { d.style.backgroundImage = `url('${e.bg}')`; if (e.bgFit) { d.style.backgroundSize = e.bgFit; d.style.backgroundRepeat = 'no-repeat'; } }
+        if (e.bgRows) {
+          d.classList.add('xp-bg-rows');
+          e.bgRows.forEach(row => {
+            const r = document.createElement('div');
+            r.className = 'xp-row';
+            // a row's height share is 1 / (sum of aspect ratios), so every row spans the full width
+            r.style.flex = (100 / row.reduce((a, t) => a + t.ar, 0)).toFixed(3) + ' 1 0';  // grow factors must sum > 1 to fill the height
+            row.forEach(t => {
+              const im = document.createElement('img');
+              im.src = t.img; im.alt = ''; im.decoding = 'async';
+              im.style.flex = t.ar + ' 1 0';
+              if (t.pos) im.style.objectPosition = t.pos;
+              r.appendChild(im);
+            });
+            d.appendChild(r);
+          });
+        }
+        if (e.bgSlide) {
+          d.classList.add('xp-bg-slide');
+          const slide = document.createElement('div');
+          slide.className = 'xp-slide';
+          d.appendChild(slide);
+          e.bgSlide.forEach(t => {
+            let el;
+            if (t.video) {
+              el = document.createElement('video');
+              Object.assign(el, { src: t.video, poster: t.poster || '', muted: true, loop: true, playsInline: true, preload: 'none' });
+              el.setAttribute('muted', ''); el.setAttribute('playsinline', '');
+            } else {
+              el = document.createElement('img');
+              el.src = t.img; el.alt = ''; el.decoding = 'async';
+            }
+            Object.assign(el.style, { left: t.l + '%', top: t.t + '%', width: t.w + '%', height: t.h + '%' });
+            slide.appendChild(el);
+          });
+        }
+        overlay.insertBefore(d, overlay.firstChild);
+        return d;
+      });
+      // play background videos only while their option faces the viewer
+      function syncVideos() {
+        bgs.forEach((b, k) => b && b.querySelectorAll('video').forEach(v => {
+          if (open && k === frontIdx && !reduceMotion) { const p = v.play(); if (p) p.catch(() => {}); }
+          else v.pause();
+        }));
+      }
+
+      const items = [];
+      for (let i = 0; i < N; i++) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'xp-item';
+        const pill = document.createElement('span');
+        pill.className = 'xp-pill';
+        pill.textContent = EXPERTISE[i % EXPERTISE.length].title;
+        b.appendChild(pill);
+        b.tabIndex = -1;
+        b.addEventListener('click', () => { if (!moved) goTo(i); });
+        drum.appendChild(b);
+        items.push(b);
+      }
+
+      let radius = 0;
+      function layout() {
+        const fs = parseFloat(getComputedStyle(items[0]).fontSize);
+        let h = fs * 1.7;
+        items.forEach(el => { el.style.marginTop = (-el.offsetHeight / 2) + 'px'; h = Math.max(h, el.offsetHeight); });
+        radius = Math.max(h, fs * 1.7) * 1.9;   // spacing between the three labels
+      }
+
+      // state
+      let rot = 0, vel = 0, target = null, idle = true, open = false, raf = 0;
+      let dragging = false, moved = false, lastY = 0, lastT = 0;
+      let frontIdx = -1;
+
+      const norm = a => ((a % 360) + 540) % 360 - 180;   // -> (-180, 180]
+      const nearestIndex = () => ((Math.round(rot / STEP) % N) + N) % N;
+
+      function goTo(i) {
+        const cur = Math.round(rot / STEP);
+        let delta = ((i - cur) % N + N) % N;
+        if (delta > N / 2) delta -= N;
+        target = (cur + delta) * STEP; idle = false; vel = 0;
+      }
+
+      function render() {
+        // Each label sits on a horizontal cylinder; it is kept upright (never mirrored)
+        // and recedes / fades as it travels around the back.
+        items.forEach((el, i) => {
+          const th = norm(i * STEP - rot), rad = th * Math.PI / 180, c = Math.cos(rad);
+          const y = -radius * Math.sin(rad), z = radius * (c - 1);
+          const tilt = Math.abs(th) <= 90 ? th : Math.sign(th) * (180 - Math.abs(th));
+          el.style.transform = `translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${(tilt * 0.75).toFixed(2)}deg)`;
+          el.style.opacity = (0.06 + 0.94 * Math.pow((1 + c) / 2, 1.2)).toFixed(3);
+          el.style.zIndex = Math.round(c * 100) + 100;
+          el.style.pointerEvents = c > -0.7 ? 'auto' : 'none';
+        });
+        const f = nearestIndex();
+        if (f !== frontIdx) {
+          if (frontIdx >= 0) items[frontIdx].classList.remove('front');
+          items[f].classList.add('front');
+          frontIdx = f;
+          bgs.forEach((b, k) => b && b.classList.toggle('active', k === f));
+          const e = EXPERTISE[f % EXPERTISE.length];
+          frontIdx = f; syncVideos();
+          dTitle.textContent = e.title;
+          dText.textContent = e.text;
+        }
+      }
+
+      function tick() {
+        if (!dragging) {
+          if (target !== null) {
+            rot += (target - rot) * 0.12;
+            if (Math.abs(target - rot) < 0.02) { rot = target; target = null; }
+          } else if (idle && !reduceMotion) {
+            rot += 0.12;
+          } else {
+            rot += vel; vel *= 0.94;
+            if (Math.abs(vel) < 0.08) { vel = 0; target = Math.round(rot / STEP) * STEP; }
+          }
+        }
+        render();
+        raf = open ? requestAnimationFrame(tick) : 0;
+      }
+
+      // wheel / trackpad
+      stage.addEventListener('wheel', e => {
+        e.preventDefault();
+        idle = false; target = null;
+        vel = Math.max(-14, Math.min(14, vel - e.deltaY * 0.035));
+      }, { passive: false });
+
+      // drag (mouse + touch)
+      stage.addEventListener('pointerdown', e => {
+        dragging = true; moved = false; idle = false; target = null; vel = 0;
+        lastY = e.clientY; lastT = performance.now();
+        stage.classList.add('dragging');
+      });
+      window.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const dy = e.clientY - lastY, now = performance.now();
+        if (Math.abs(dy) > 2) moved = true;
+        const d = -dy * (90 / Math.max(radius, 1)) * 0.6;
+        rot += d;
+        vel = d / Math.max(1, (now - lastT) / 16.7);
+        lastY = e.clientY; lastT = now;
+      });
+      window.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false; stage.classList.remove('dragging');
+        if (!moved) vel = 0;
+        setTimeout(() => { moved = false; }, 0);
+      });
+
+      // keyboard
+      overlay.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { close(); }
+        else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          goTo((nearestIndex() + (e.key === 'ArrowDown' ? 1 : -1) + N) % N);
+        } else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+      });
+
+      function show() {
+        open = true; idle = true; vel = 0; target = null;
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('xp-lock');
+        layout();
+        if (!raf) raf = requestAnimationFrame(tick);
+        syncVideos();
+        closeBtn.focus();
+      }
+      function close() {
+        open = false; syncVideos();
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('xp-lock');
+        openBtn.focus();
+      }
+      openBtn.addEventListener('click', show);
+      closeBtn.addEventListener('click', close);
+      window.addEventListener('resize', () => { if (open) layout(); });
+      layout(); render();
+    })();
   </script>
 </body>
 </html>
