@@ -540,7 +540,7 @@
     @media (max-width: 900px) {
       .selected-pub-text, .selected-pub-image { width: 100%; flex: none; }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 1000px) {
       /* menu bar scrolls sideways instead of overflowing */
       .navbar {
         justify-content: flex-start; overflow-x: auto; white-space: nowrap;
@@ -548,6 +548,9 @@
       }
       .navbar::-webkit-scrollbar { display: none; }
       .nav-link { flex: 0 0 auto; padding: 14px 0 6px; }
+    }
+    @media (min-width: 1001px) and (max-width: 1200px) { .navbar { gap: 22px; } }
+    @media (max-width: 700px) {
       .hero { height: auto; min-height: 0; padding: 48px 0 56px; }
       .hero-name { font-size: 2rem; }
       .hero-title { font-size: 1rem; }
@@ -579,8 +582,9 @@
     </div>
   </header>
   <nav class="navbar">
-    <a href="#about" class="nav-link">About</a>
+    <a href="#about" class="nav-link">Overview</a>
     <a href="#expertise" class="nav-link">Expertise</a>
+    <a href="#experience" class="nav-link">Research Experience</a>
     <a href="#publications" class="nav-link">Publications</a>
     <a href="#research" class="nav-link">Research Projects</a>
     <a href="#missions" class="nav-link">Missions</a>
@@ -588,17 +592,32 @@
   </nav>
 
   <section id="about">
-    <h2>About</h2>
+    <h2>Overview</h2>
     <div class="section-rule"></div>
     <p class="bio-text">I am a Spacecraft Guidance, Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Leveraging seven years of research on autonomous space robotics probes, I had leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the United States. At Stanford, my research focused on enabling and flight testing ground breaking GNC technologies for the next generation of distributed space systems. I have been GNC Engineer for the <a href="#missions">Milani</a>, <a href="#missions">LUMIO</a>, and <a href="#missions">STARI</a> missions. At Cosmic Frontier Labs, I am now helping to design and build a new generation of standardize space telescopes to accelerate discovery and exploration of the Universe.</p>
 
-    <h2 style="margin-top:3em;">Research Experience</h2>
+  </section>
+  <section id="expertise" class="xp-section" aria-label="Expertise">
+    <div class="xp-overlay" id="xp-overlay">
+      <h2 class="xp-eyebrow">Expertise</h2>
+      <div class="xp-stage" id="xp-stage">
+        <div class="xp-ring"><div class="xp-drum" id="xp-drum"></div></div>
+      </div>
+      <div class="xp-desc" aria-live="polite">
+        <h3 id="xp-desc-title"></h3>
+        <p id="xp-desc-text"></p>
+      </div>
+      <div class="xp-hint"><span class="hint-desktop">Scroll to explore · click an item to jump to it</span><span class="hint-touch">Scroll to explore · tap an item</span></div>
+    </div>
+  </section>
+  <section id="experience">
+    <h2>Research Experience</h2>
     <div class="section-rule"></div>
       <div class="cv-timeline">
         <div class="cv-timeline-line"></div>
         <div class="cv-timeline-entry">
           <div class="cv-timeline-dot"></div>
-          <div class="cv-timeline-date">01/2025 - ongoing</div>
+          <div class="cv-timeline-date">01/2025 - 09/2026</div>
           <div class="cv-timeline-content">
             <b>Postdoctoral Scholar</b> <span class="cv-timeline-place">Stanford University - SLAB team</span>
             <div class="cv-timeline-desc">Enabling safe, robust and high precision GNC solutions for the next generation of distributed space systems. Lead GNC engineer for the STARI mission.</div>
@@ -679,19 +698,6 @@
           </div>
         </div>
       </div>
-  </section>
-  <section id="expertise" class="xp-section" aria-label="Expertise">
-    <div class="xp-overlay" id="xp-overlay">
-      <h2 class="xp-eyebrow">Expertise</h2>
-      <div class="xp-stage" id="xp-stage">
-        <div class="xp-ring"><div class="xp-drum" id="xp-drum"></div></div>
-      </div>
-      <div class="xp-desc" aria-live="polite">
-        <h3 id="xp-desc-title"></h3>
-        <p id="xp-desc-text"></p>
-      </div>
-      <div class="xp-hint"><span class="hint-desktop">Scroll to explore · click an item to jump to it</span><span class="hint-touch">Scroll to explore · tap an item</span></div>
-    </div>
   </section>
   <section id="publications">
       <h2>Selected Publications <span style="font-size:1.05rem;font-weight:normal;color:#555;">— <a href="https://scholar.google.com/citations?user=JqvWV-AAAAAJ&hl=it" target="_blank" style="color:#1a9e96;font-weight:500;">Google Scholar</a></span></h2>

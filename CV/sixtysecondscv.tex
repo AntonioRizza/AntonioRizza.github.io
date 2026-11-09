@@ -101,7 +101,8 @@
 % your name
 \cvname{Antonio Rizza}
 % job title/career
-\cvjobtitle{Postdoctoral \\ \\Researcher \\ \\
+\cvjobtitle{{\large Guidance, Navigation\\[2pt] and Control Engineer\\[4pt] Cosmic Frontier Labs}\\[8pt]
+{\normalsize\itshape Enabling Autonomy\\[1pt] for Space Science}\\ \\
 % \small Date of birth: 18/12/1995\\
 % Place of birth: Padova (PD)\\
 % Tax code: RZZNTN95T18G224W
@@ -181,17 +182,13 @@
         \profilesection{Expertise}
 
     \vspace{0.01cm}
-   Spacecraft GNC\\
+   {\hyphenpenalty=10000\exhyphenpenalty=10000
+   Modeling and Simulation\newline for Training, Validation\newline and Verification\\
 
-   Astrodynamics and Formation\\ Flying\\ 
-      
-   Modeling and Simulation of Space Systems \\
+   Autonomous Guidance, Navigation and Control\\
 
-   Dynamical Systems Theory\\
-
-   Optimal Control Theory\\
-   
-   Non-linear State Estimation\\
+   Optimization for Scalability and Distribution\\
+   \par}
 
 	\vspace{0.01cm}
     \profilesection{Computer Skills}
@@ -247,6 +244,28 @@
 %-------------------------------------------------------------------------------
 %                         TABLE ENTRIES RIGHT COLUMN
 %-------------------------------------------------------------------------------
+% slightly tighter section spacing so the CV stays on one page
+\titlespacing*{\section}{0pt}{2ex}{1.2ex}
+% same as the class \cvitem, with slightly less space after each description (keeps the CV on one page)
+\renewcommand{\cvitem}[4]{%
+	\parbox[t]{0.22\textwidth}{\raggedright #1} &%
+	\parbox[t]{0.76\textwidth}{%
+		\if\relax\detokenize{#4}\relax%
+			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-1em}{\raggedright #2}%
+			\hfill {\footnotesize#3}%
+		\else%
+			\parbox[t]{\linewidth-\widthof{\footnotesize #3}-1em}{%
+				\raggedright \textbf{#2}%
+			} \hfill {\footnotesize#3}%
+		\fi%
+	}%
+	\if\relax\detokenize{#4}\relax%
+		\\%
+	\else%
+		\\[-0.4ex]\multicolumn{2}{@{}l@{}}{\parbox[t]{\textwidth}{\textcolor{itemtextcolor}{#4}}\vspace{\cvitemgap}}\\%
+	\fi%
+}
+\newcommand{\cvitemgap}{0ex}
 \begin{document}
 
 \makefrontsidebar
@@ -256,14 +275,14 @@
 % \begin{center}
 \normalsize
 
-I am a Spacecraft Guidance Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. I had leading GNC roles for Low Earth Orbit (LEO) and deep-space missions sponsored by national agencies. At Stanford, I am currently focused on enabling GNC solutions for the next generation of distributed space systems. I have been GNC Engineer for the \href{https://tyvak.eu/missions/milani/}{\textcolor{materialblue}{Milani}}, \href{https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Shaping_the_Future/LUMIO_New_CubeSat_Illuminating_Lunar_Impacts}{\textcolor{materialblue}{LUMIO}}, and \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} mission.
+I am a Spacecraft Guidance, Navigation and Control (GNC) Engineer with experience in modeling, simulation and testing of dynamical Space Systems, spacecraft autonomy, precise formation flying and astrodynamics. Leveraging seven years of research on autonomous space robotics probes, I had leading GNC roles for both Low Earth Orbit (LEO) and deep-space missions sponsored by national and international agencies across Europe and the United States. At Stanford, my research focused on enabling and flight testing ground breaking GNC technologies for the next generation of distributed space systems. I have been GNC Engineer for the \href{https://tyvak.eu/missions/milani/}{\textcolor{materialblue}{Milani}}, \href{https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Shaping_the_Future/LUMIO_New_CubeSat_Illuminating_Lunar_Impacts}{\textcolor{materialblue}{LUMIO}}, and \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} missions. At Cosmic Frontier Labs, I am now helping to design and build a new generation of standardize space telescopes to accelerate discovery and exploration of the Universe.
 
 %   Enthusiastic and motivated Space Engineer, with strong background in GNC, System Engineering and ground testing methodologies for Aerothermal Demise. Currently enrolled in a PhD course at Politecnico di Milano.
 
 % \end{center}
 \cvsection{Research Experience}
 \begin{cvtable}[1.5]
-\cvitem{\mbox{01/2025 - ongoing}}{Postdoctoral Scholar}{Stanford University - SLAB team}{Enabling safe, robust and high precision GNC solutions for the next generation of distributed space systems. Lead GNC engineer for the \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} mission.}
+\cvitem{\mbox{01/2025 - 09/2026}}{Postdoctoral Scholar}{Stanford University - SLAB team}{Enabling safe, robust and high precision GNC solutions for the next generation of distributed space systems. Lead GNC engineer for the \href{https://starimission.space/index.html}{\textcolor{materialblue}{STARI}} mission.}
 
 \cvitem{\mbox{11/2024 - 12/2024}}{Research Fellow (Senior)}{Politecnico di Milano - DART team}{Developing guidance and control solution for proximity opeartions around small bodies. Supporting the development of a robotic facility for validation and verification of GNC algorithm.}
 
